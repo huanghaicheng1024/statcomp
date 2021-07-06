@@ -1,0 +1,28 @@
+--- 
+title: "统计计算"
+author: "Huang"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "这是使用bookdwon编写的书籍。"
+---
+
+# 背景 {-}
+
+开始学习《统计计算》，主要参考李东风老师的网页教材，链接：https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/index.html 。
+
+
+<p style="text-align: right;">2021-7-6</p>
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+
