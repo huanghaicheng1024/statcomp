@@ -17,5 +17,8 @@ before_chapter_script: "_common.R"
 
 rmd_files: [
   "index.Rmd",
-  "intro-error.Rmd"
+  "intro-error.Rmd",
+  "intro-summary.Rmd",
+  "intro-graph.Rmd",
+  "rng-uniform.Rmd"
 ]
