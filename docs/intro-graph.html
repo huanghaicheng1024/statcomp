@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>统计计算</title>
+  <title>3 统计图形 | 统计计算</title>
   <meta name="description" content="这是使用bookdwon编写的书籍。" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="统计计算" />
+  <meta property="og:title" content="3 统计图形 | 统计计算" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="统计计算" />
+  <meta name="twitter:title" content="3 统计图形 | 统计计算" />
   
   <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro-error.html"/>
+<link rel="prev" href="intro-summary.html"/>
+<link rel="next" href="rng-uniform.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -170,18 +170,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">统计计算</h1>
-<p class="author"><em>Huang</em></p>
-<p class="date"><em>2021-08-03</em></p>
+<div id="intro-graph" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 统计图形</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro-graph.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a href="intro-graph.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb20-3"><a href="intro-graph.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;GGally&#39;:</span></span>
+<span id="cb20-4"><a href="intro-graph.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   method from   </span></span>
+<span id="cb20-5"><a href="intro-graph.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   +.gg   ggplot2</span></span>
+<span id="cb20-6"><a href="intro-graph.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1024</span>)</span></code></pre></div>
+<div id="习题-2" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 习题</h2>
+<div id="习题1-2" class="section level3 unnumbered">
+<h3>习题1</h3>
+<p><strong>解：</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro-graph.html#cb21-1" aria-hidden="true" tabindex="-1"></a>opar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-2"><a href="intro-graph.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>))</span>
+<span id="cb21-3"><a href="intro-graph.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>)) <span class="co">#第一种</span></span>
+<span id="cb21-4"><a href="intro-graph.html#cb21-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">100</span>)</span>
+<span id="cb21-5"><a href="intro-graph.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(n))</span>
+<span id="cb21-6"><a href="intro-graph.html#cb21-6" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb21-7"><a href="intro-graph.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="fu">rnorm</span>(n[[i]]),<span class="at">freq =</span> <span class="cn">FALSE</span>,<span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;n=&quot;</span>,n[[i]],<span class="st">&quot;，标准正态&quot;</span>))</span>
+<span id="cb21-8"><a href="intro-graph.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="fu">exp</span>(<span class="fu">rnorm</span>(n[[i]])),<span class="at">freq =</span> <span class="cn">FALSE</span>,<span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;n=&quot;</span>,n[[i]],<span class="st">&quot;，对数正态&quot;</span>))</span>
+<span id="cb21-9"><a href="intro-graph.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(<span class="fu">rcauchy</span>(n[[i]]),<span class="at">freq =</span> <span class="cn">FALSE</span>,<span class="at">main =</span> <span class="fu">paste</span>(<span class="st">&quot;n=&quot;</span>,n[[i]],<span class="st">&quot;，柯西分布&quot;</span>))</span>
+<span id="cb21-10"><a href="intro-graph.html#cb21-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-11"><a href="intro-graph.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opar)</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="背景" class="section level1 unnumbered">
-<h1>背景</h1>
-<p>开始学习《统计计算》，主要参考李东风老师的网页教材，链接：<a href="https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/index.html" class="uri">https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/index.html</a> 。</p>
-<p style="text-align: right;">
-2021-7-6
-</p>
+<div id="习题2-2" class="section level3 unnumbered">
+<h3>习题2</h3>
+<p><strong>解：</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro-graph.html#cb22-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="intro-graph.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">color=</span>Species,<span class="at">shape=</span>Species),</span>
+<span id="cb22-3"><a href="intro-graph.html#cb22-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb22-4"><a href="intro-graph.html#cb22-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&quot;points&quot;</span>))</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-27-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
+</div>
+</div>
 </div>
 <section style="
     display: block;
@@ -199,8 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="intro-error.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro-summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rng-uniform.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -222,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/index.Rmd",
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/intro-graph.Rmd",
 "text": "Edit"
 },
 "history": {

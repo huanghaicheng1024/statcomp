@@ -24,7 +24,7 @@
 <meta name="author" content="Huang" />
 
 
-<meta name="date" content="2021-07-06" />
+<meta name="date" content="2021-08-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-
+<link rel="next" href="intro-summary.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -138,6 +138,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
 </ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
 
@@ -160,19 +172,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro-error" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 误差</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro-error.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code></pre></div>
 <div id="习题" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> 习题</h2>
-<div id="习题1" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> 习题1</h3>
+<div id="习题1" class="section level3 unnumbered">
+<h3>习题1</h3>
 <p>编程计算机器的值。</p>
 <p><strong>解：</strong></p>
 <p>R语言中可以使用</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro-error.html#cb1-1" aria-hidden="true" tabindex="-1"></a>.Machine<span class="sc">$</span>double.eps</span>
-<span id="cb1-2"><a href="intro-error.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.22e-16</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro-error.html#cb2-1" aria-hidden="true" tabindex="-1"></a>.Machine<span class="sc">$</span>double.eps</span>
+<span id="cb2-2"><a href="intro-error.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.22e-16</span></span></code></pre></div>
 <p><code>.Machine</code>下面列有很多误差相关的机器参数，有需要的可以查阅<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/.Machine">这里</a>。</p>
 </div>
-<div id="习题2" class="section level3" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> 习题2</h3>
+<div id="习题2" class="section level3 unnumbered">
+<h3>习题2</h3>
 <p>设某正数<span class="math inline">\(a\)</span>四舍五入后保留了<span class="math inline">\(p\)</span>位有效数字，表示成<span class="math inline">\(a^* = (0.a_1a_2\cdots a_p)_{10}\times10^m(a_1\ne0)\)</span>。 估计其绝对误差和相对误差的范围， 并分析误差与有效数字位数<span class="math inline">\(p\)</span>的关系。</p>
 <p><strong>解：</strong></p>
 <p>容易知道，<span class="math inline">\(m\ge p\)</span>。先通过一个例子直观理解一下，不妨取<span class="math inline">\(a=12546\)</span>，当取<span class="math inline">\(p=3\)</span>，有<span class="math inline">\(a^*=0.125\times 10^5=12500\)</span>，当取<span class="math inline">\(p=4\)</span>，有<span class="math inline">\(a^*=0.1255\times 10^5=12550\)</span>。</p>
@@ -185,6 +198,218 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[
 \delta = \frac{\Delta}{a} \le\frac{0.5\times10^{m-p}}{10^m}=0.5\times10^{-p}
 \]</span></p>
+</div>
+<div id="习题3" class="section level3 unnumbered">
+<h3>习题3</h3>
+<p><strong>解：</strong></p>
+<p>先定义通项：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro-error.html#cb3-1" aria-hidden="true" tabindex="-1"></a>myfun <span class="ot">&lt;-</span> <span class="cf">function</span>(n)</span>
+<span id="cb3-2"><a href="intro-error.html#cb3-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-3"><a href="intro-error.html#cb3-3" aria-hidden="true" tabindex="-1"></a>   (<span class="sc">-</span><span class="dv">1</span>)<span class="sc">^</span>(n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n</span>
+<span id="cb3-4"><a href="intro-error.html#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="intro-error.html#cb3-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro-error.html#cb4-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a href="intro-error.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb4-3"><a href="intro-error.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> S<span class="sc">+</span><span class="fu">myfun</span>(i)</span>
+<span id="cb4-4"><a href="intro-error.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="intro-error.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(S<span class="sc">-</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb4-6"><a href="intro-error.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5e-07</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro-error.html#cb5-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb5-2"><a href="intro-error.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb5-3"><a href="intro-error.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> S<span class="sc">+</span><span class="fu">myfun</span>(n<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span>i)</span>
+<span id="cb5-4"><a href="intro-error.html#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="intro-error.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(S<span class="sc">-</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb5-6"><a href="intro-error.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5e-07</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro-error.html#cb6-1" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb6-2"><a href="intro-error.html#cb6-2" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,n<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="intro-error.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n<span class="sc">/</span><span class="dv">2</span>)) {</span>
+<span id="cb6-4"><a href="intro-error.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  l[[i]] <span class="ot">&lt;-</span> <span class="fu">myfun</span>(<span class="dv">2</span><span class="sc">*</span>i<span class="dv">-1</span>)<span class="sc">+</span><span class="fu">myfun</span>(<span class="dv">2</span><span class="sc">*</span>i)</span>
+<span id="cb6-5"><a href="intro-error.html#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="intro-error.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> l) {</span>
+<span id="cb6-7"><a href="intro-error.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> S<span class="sc">+</span>i</span>
+<span id="cb6-8"><a href="intro-error.html#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="intro-error.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(S<span class="sc">-</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb6-10"><a href="intro-error.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5e-07</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro-error.html#cb7-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,n<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="intro-error.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n<span class="sc">/</span><span class="dv">2</span>)) {</span>
+<span id="cb7-3"><a href="intro-error.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  l[[i]] <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>n<span class="sc">*</span><span class="dv">2</span><span class="sc">*</span>(n<span class="dv">-1</span>))</span>
+<span id="cb7-4"><a href="intro-error.html#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-5"><a href="intro-error.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> l) {</span>
+<span id="cb7-6"><a href="intro-error.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> S<span class="sc">+</span>i</span>
+<span id="cb7-7"><a href="intro-error.html#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="intro-error.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(S<span class="sc">-</span><span class="fu">log</span>(<span class="dv">2</span>))</span>
+<span id="cb7-9"><a href="intro-error.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.75e-07</span></span></code></pre></div>
+<p>第4种方法精度更高。</p>
+</div>
+<div id="习题4" class="section level3 unnumbered">
+<h3>习题4</h3>
+<p><strong>解：</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intro-error.html#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb8-2"><a href="intro-error.html#cb8-2" aria-hidden="true" tabindex="-1"></a>myfun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">k=</span><span class="dv">10</span>)</span>
+<span id="cb8-3"><a href="intro-error.html#cb8-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-4"><a href="intro-error.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-5"><a href="intro-error.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k) {</span>
+<span id="cb8-6"><a href="intro-error.html#cb8-6" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> (<span class="sc">-</span>x)<span class="sc">^</span>i<span class="sc">/</span><span class="fu">factorial</span>(i)</span>
+<span id="cb8-7"><a href="intro-error.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    S <span class="ot">&lt;-</span> S<span class="sc">+</span>m</span>
+<span id="cb8-8"><a href="intro-error.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-9"><a href="intro-error.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  S</span>
+<span id="cb8-10"><a href="intro-error.html#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-11"><a href="intro-error.html#cb8-11" aria-hidden="true" tabindex="-1"></a>myfun2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">k=</span><span class="dv">10</span>)</span>
+<span id="cb8-12"><a href="intro-error.html#cb8-12" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-13"><a href="intro-error.html#cb8-13" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-14"><a href="intro-error.html#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k) {</span>
+<span id="cb8-15"><a href="intro-error.html#cb8-15" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> x<span class="sc">^</span>i<span class="sc">/</span><span class="fu">factorial</span>(i)</span>
+<span id="cb8-16"><a href="intro-error.html#cb8-16" aria-hidden="true" tabindex="-1"></a>    S <span class="ot">&lt;-</span> S<span class="sc">+</span>m</span>
+<span id="cb8-17"><a href="intro-error.html#cb8-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-18"><a href="intro-error.html#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">/</span>S</span>
+<span id="cb8-19"><a href="intro-error.html#cb8-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-20"><a href="intro-error.html#cb8-20" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(x,myfun1)</span>
+<span id="cb8-21"><a href="intro-error.html#cb8-21" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(x,myfun2)</span>
+<span id="cb8-22"><a href="intro-error.html#cb8-22" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>x)</span>
+<span id="cb8-23"><a href="intro-error.html#cb8-23" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,<span class="at">s1=</span><span class="fu">abs</span>(s1<span class="sc">-</span>s),<span class="at">s2=</span><span class="fu">abs</span>(s2<span class="sc">-</span>s))</span>
+<span id="cb8-24"><a href="intro-error.html#cb8-24" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">s1</th>
+<th align="right">s2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.000</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">0.000</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0.004</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.078</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>方法1的误差太大了，不妨增大<span class="math inline">\(k\)</span>值：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro-error.html#cb9-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(x,myfun1,<span class="at">k=</span><span class="dv">100</span>)</span>
+<span id="cb9-2"><a href="intro-error.html#cb9-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(x,myfun2)</span>
+<span id="cb9-3"><a href="intro-error.html#cb9-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>x)</span>
+<span id="cb9-4"><a href="intro-error.html#cb9-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x,<span class="at">s1=</span><span class="fu">abs</span>(s1<span class="sc">-</span>s),<span class="at">s2=</span><span class="fu">abs</span>(s2<span class="sc">-</span>s))</span>
+<span id="cb9-5"><a href="intro-error.html#cb9-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">x</th>
+<th align="right">s1</th>
+<th align="right">s2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>误差瞬间下去，说明方法1的收敛比较慢。以<span class="math inline">\(x=4\)</span>为例，探究两个方法的收敛速度：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro-error.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb10-2"><a href="intro-error.html#cb10-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
+<span id="cb10-3"><a href="intro-error.html#cb10-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(k,myfun1,<span class="at">x=</span>x)</span>
+<span id="cb10-4"><a href="intro-error.html#cb10-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(k,myfun2,<span class="at">x=</span>x)</span>
+<span id="cb10-5"><a href="intro-error.html#cb10-5" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>x)</span>
+<span id="cb10-6"><a href="intro-error.html#cb10-6" aria-hidden="true" tabindex="-1"></a>opar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-7"><a href="intro-error.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k,<span class="fu">abs</span>(s1<span class="sc">-</span>s),<span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-8"><a href="intro-error.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(k,<span class="fu">abs</span>(s2<span class="sc">-</span>s),<span class="at">lty=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb10-9"><a href="intro-error.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">ylab=</span><span class="st">&quot;绝对误差&quot;</span>)</span>
+<span id="cb10-10"><a href="intro-error.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;公式（1）&quot;</span>,<span class="st">&quot;公式（2）&quot;</span>),<span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;red&quot;</span>))</span>
+<span id="cb10-11"><a href="intro-error.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opar)</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>可以看到公式（1）的收敛速度一开始是很慢的。</p>
+</div>
+<div id="习题5" class="section level3 unnumbered">
+<h3>习题5</h3>
+<p><strong>解：</strong></p>
+<p>载入数据：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro-error.html#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">249</span>, <span class="dv">254</span>, <span class="dv">243</span>, <span class="dv">268</span>, <span class="dv">253</span>, <span class="dv">269</span>, <span class="dv">287</span>, <span class="dv">241</span>, <span class="dv">273</span>, <span class="dv">306303</span>, <span class="dv">280</span>, <span class="dv">260</span>, <span class="dv">256</span>, <span class="dv">278</span>, <span class="dv">344</span>, <span class="dv">304</span>, <span class="dv">283</span>, <span class="dv">310</span>)</span>
+<span id="cb11-2"><a href="intro-error.html#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span></code></pre></div>
+<p>公式1：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro-error.html#cb12-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb12-2"><a href="intro-error.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> x) {</span>
+<span id="cb12-3"><a href="intro-error.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  s1 <span class="ot">&lt;-</span> <span class="fu">signif</span>(s1<span class="sc">+</span><span class="fu">signif</span>(i<span class="sc">^</span><span class="dv">2</span>,<span class="at">digits =</span> <span class="dv">6</span>),<span class="at">digits =</span> <span class="dv">6</span>)</span>
+<span id="cb12-4"><a href="intro-error.html#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-5"><a href="intro-error.html#cb12-5" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">signif</span>(s1<span class="sc">-</span>n<span class="sc">*</span><span class="fu">mean</span>(x),<span class="at">digits =</span> <span class="dv">6</span>)</span>
+<span id="cb12-6"><a href="intro-error.html#cb12-6" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">signif</span>(s1<span class="sc">/</span>(n<span class="dv">-1</span>),<span class="at">digits =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p>公式2：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro-error.html#cb13-1" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb13-2"><a href="intro-error.html#cb13-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb13-3"><a href="intro-error.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> x) {</span>
+<span id="cb13-4"><a href="intro-error.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  s2 <span class="ot">&lt;-</span> <span class="fu">signif</span>(s2<span class="sc">+</span><span class="fu">signif</span>((i<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">2</span>,<span class="at">digits =</span> <span class="dv">6</span>),<span class="at">digits =</span> <span class="dv">6</span>)</span>
+<span id="cb13-5"><a href="intro-error.html#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-6"><a href="intro-error.html#cb13-6" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">signif</span>(s2<span class="sc">/</span>(n<span class="dv">-1</span>),<span class="at">digits =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p>比较：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro-error.html#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">函数直接计算</span><span class="st">`</span><span class="ot">=</span><span class="fu">var</span>(x),<span class="st">`</span><span class="at">公式1</span><span class="st">`</span><span class="ot">=</span>s1,<span class="st">`</span><span class="at">公式2</span><span class="st">`</span><span class="ot">=</span>s2)</span>
+<span id="cb14-2"><a href="intro-error.html#cb14-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">函数直接计算</th>
+<th align="center">公式1</th>
+<th align="center">公式2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">5.2e+09</td>
+<td align="center">5.52e+09</td>
+<td align="center">5.2e+09</td>
+</tr>
+</tbody>
+</table>
+<p>公式2比公式1更精确，公式1先计算平方求和，值太大，保留6位有效数字之后损失较多。</p>
+</div>
+<div id="习题6" class="section level3 unnumbered">
+<h3>习题6</h3>
+<p><strong>解：</strong></p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
 
 </div>
 </div>
@@ -205,8 +430,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 概括统计量 | 统计计算</title>
+  <meta name="description" content="这是使用bookdwon编写的书籍。" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 概括统计量 | 统计计算" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 概括统计量 | 统计计算" />
+  
+  <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+<meta name="author" content="Huang" />
+
+
+<meta name="date" content="2021-08-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro-error.html"/>
+<link rel="next" href="intro-graph.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">统计计算</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>背景</a></li>
+<li class="chapter" data-level="1" data-path="intro-error.html"><a href="intro-error.html"><i class="fa fa-check"></i><b>1</b> 误差</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro-summary" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 概括统计量</h1>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro-summary.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="intro-summary.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -- Attaching packages ----- tidyverse 1.3.0 --</span></span>
+<span id="cb15-3"><a href="intro-summary.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; √ ggplot2 3.3.2     √ dplyr   1.0.2</span></span>
+<span id="cb15-4"><a href="intro-summary.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; √ tibble  3.0.3     √ stringr 1.4.0</span></span>
+<span id="cb15-5"><a href="intro-summary.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; √ tidyr   1.1.1     √ forcats 0.5.0</span></span>
+<span id="cb15-6"><a href="intro-summary.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; √ readr   1.3.1</span></span>
+<span id="cb15-7"><a href="intro-summary.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -- Conflicts -------- tidyverse_conflicts() --</span></span>
+<span id="cb15-8"><a href="intro-summary.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb15-9"><a href="intro-summary.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></span></code></pre></div>
+<div id="习题-1" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 习题</h2>
+<div id="习题1-1" class="section level3 unnumbered">
+<h3>习题1</h3>
+<p><strong>解：</strong></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro-summary.html#cb16-1" aria-hidden="true" tabindex="-1"></a>skewness <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb16-2"><a href="intro-summary.html#cb16-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb16-3"><a href="intro-summary.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb16-4"><a href="intro-summary.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">/</span><span class="fu">sd</span>(x)</span>
+<span id="cb16-5"><a href="intro-summary.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  phi <span class="ot">&lt;-</span> n<span class="sc">*</span><span class="fu">sum</span>(y<span class="sc">^</span><span class="dv">3</span>)<span class="sc">/</span>(n<span class="dv">-1</span>)<span class="sc">/</span>(n<span class="dv">-2</span>)</span>
+<span id="cb16-6"><a href="intro-summary.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  phi</span>
+<span id="cb16-7"><a href="intro-summary.html#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>测试：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro-summary.html#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.75</span>, <span class="fl">10.37</span>, <span class="fl">8.33</span>, <span class="fl">13.19</span>, <span class="fl">10.66</span>, <span class="fl">8.36</span>, <span class="fl">10.97</span>, <span class="fl">11.48</span>, <span class="fl">11.15</span>, <span class="fl">9.39</span>)</span>
+<span id="cb17-2"><a href="intro-summary.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(x)</span>
+<span id="cb17-3"><a href="intro-summary.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.3516643</span></span></code></pre></div>
+</div>
+<div id="习题2-1" class="section level3 unnumbered">
+<h3>习题2</h3>
+<p><strong>解：</strong></p>
+<p>定义函数：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro-summary.html#cb18-1" aria-hidden="true" tabindex="-1"></a>quantile_est <span class="ot">&lt;-</span> <span class="cf">function</span>(x, p)</span>
+<span id="cb18-2"><a href="intro-summary.html#cb18-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb18-3"><a href="intro-summary.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">as.double</span>(p)</span>
+<span id="cb18-4"><a href="intro-summary.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(p<span class="sc">&lt;</span><span class="dv">0</span> <span class="sc">|</span> p<span class="sc">&gt;</span><span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">&quot;The &#39;p&#39; is out of [0,1].&quot;</span>)</span>
+<span id="cb18-5"><a href="intro-summary.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(p<span class="sc">==</span><span class="dv">0</span>) xp <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
+<span id="cb18-6"><a href="intro-summary.html#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(p<span class="sc">==</span><span class="dv">1</span>) xp <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
+<span id="cb18-7"><a href="intro-summary.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb18-8"><a href="intro-summary.html#cb18-8" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb18-9"><a href="intro-summary.html#cb18-9" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> <span class="fu">table</span>(x)</span>
+<span id="cb18-10"><a href="intro-summary.html#cb18-10" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">as.double</span>(<span class="fu">names</span>(t))</span>
+<span id="cb18-11"><a href="intro-summary.html#cb18-11" aria-hidden="true" tabindex="-1"></a>    i <span class="ot">&lt;-</span> <span class="fu">floor</span>(p<span class="sc">*</span>(n<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)  <span class="co"># xq左侧的x(i)</span></span>
+<span id="cb18-12"><a href="intro-summary.html#cb18-12" aria-hidden="true" tabindex="-1"></a>    j <span class="ot">&lt;-</span> i<span class="sc">+</span>t[<span class="fu">names</span>(t)<span class="sc">==</span>r[i]] <span class="co"># xq右侧x(j)</span></span>
+<span id="cb18-13"><a href="intro-summary.html#cb18-13" aria-hidden="true" tabindex="-1"></a>    k <span class="ot">&lt;-</span> (j<span class="sc">-</span>i)<span class="sc">/</span>(n<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">/</span>(r[i<span class="sc">+</span><span class="dv">1</span>]<span class="sc">-</span>r[i])</span>
+<span id="cb18-14"><a href="intro-summary.html#cb18-14" aria-hidden="true" tabindex="-1"></a>    xp <span class="ot">&lt;-</span> p<span class="sc">-</span>(i<span class="dv">-1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">/</span>(n<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)<span class="sc">+</span>k<span class="sc">*</span>r[i]</span>
+<span id="cb18-15"><a href="intro-summary.html#cb18-15" aria-hidden="true" tabindex="-1"></a>    xp <span class="ot">&lt;-</span> xp<span class="sc">/</span>k</span>
+<span id="cb18-16"><a href="intro-summary.html#cb18-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-17"><a href="intro-summary.html#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(xp) <span class="ot">&lt;-</span> p</span>
+<span id="cb18-18"><a href="intro-summary.html#cb18-18" aria-hidden="true" tabindex="-1"></a>  xp</span>
+<span id="cb18-19"><a href="intro-summary.html#cb18-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>与<code>quantile()</code>以及真实分位数的比较：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro-summary.html#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb19-2"><a href="intro-summary.html#cb19-2" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">p =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by =</span> <span class="fl">0.1</span>))</span>
+<span id="cb19-3"><a href="intro-summary.html#cb19-3" aria-hidden="true" tabindex="-1"></a>tbl[<span class="st">&quot;real&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(tbl<span class="sc">$</span>p)</span>
+<span id="cb19-4"><a href="intro-summary.html#cb19-4" aria-hidden="true" tabindex="-1"></a>tbl[<span class="st">&quot;quantile&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x,tbl<span class="sc">$</span>p)</span>
+<span id="cb19-5"><a href="intro-summary.html#cb19-5" aria-hidden="true" tabindex="-1"></a>tbl[<span class="st">&quot;quantile_est&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(tbl<span class="sc">$</span>p,quantile_est,<span class="at">x=</span>x)</span>
+<span id="cb19-6"><a href="intro-summary.html#cb19-6" aria-hidden="true" tabindex="-1"></a>tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb19-7"><a href="intro-summary.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>p))<span class="sc">+</span></span>
+<span id="cb19-8"><a href="intro-summary.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>real,<span class="at">color=</span><span class="st">&quot;real&quot;</span>))<span class="sc">+</span></span>
+<span id="cb19-9"><a href="intro-summary.html#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>quantile,<span class="at">color=</span><span class="st">&quot;quantile&quot;</span>))<span class="sc">+</span></span>
+<span id="cb19-10"><a href="intro-summary.html#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>quantile_est,<span class="at">color=</span><span class="st">&quot;quantile_est&quot;</span>),<span class="at">linetype=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb19-11"><a href="intro-summary.html#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>可以看到，自定义函数跟<code>quantile()</code>函数得到的值重合度非常高，与真实分位数也差别不大。</p>
+</div>
+<div id="习题3-1" class="section level3 unnumbered">
+<h3>习题3</h3>
+<p><strong>解：</strong></p>
+<p>3.2.1</p>
+<p>证明：
+<span class="math display">\[
+\bar{x}_n = \frac1n\sum_{i=1}^nx_i=\frac{n-1}n\times\frac{\sum_{i=1}^{n-1}x_i}{n-1}+\frac{x_n}n=\frac{n-1}n\bar{x}_{n-1}+\frac{x_n}n
+\]</span></p>
+<p>3.2.2</p>
+<p>证明：
+<span class="math display">\[
+\begin{align}
+(n-1)S_n^2 &amp;= \sum_{i=1}^n(x_i-\bar x_n)^2\\
+&amp;= \sum_{i=1}^n(x_i-\bar x_{n-1}+\bar x_{n-1}-\bar x_n)^2\\
+&amp;= \sum_{i=1}^n(x_i-\bar x_{n-1})^2+2(\bar x_{n-1}-\bar x_n)\sum_{i=1}^n(x_i-\bar x_{n-1})+\sum_{i=1}^n(\bar x_{n-1}-\bar x_n)^2\\
+&amp;= (n-2)S_{n-1}^2+(x_n-\bar x_{n-1})^2-2n(\bar x_n-\bar x_{n-1})^2+n(\bar x_{n-1}-\bar x_n)^2\\
+&amp;= (n-2)S_{n-1}^2+(x_n-\bar x_{n-1})^2-n(\bar x_n-\bar x_{n-1})^2\\
+&amp;= (n-2)S_{n-1}^2+(x_n-\bar x_{n-1})^2-n(\frac{x_n}{n}-\frac{\bar x_{n-1}}{n})^2\\
+&amp;= (n-2)S_{n-1}^2+(x_n-\bar x_{n-1})^2-\frac1n(x_n-\bar x_{n-1})^2\\
+&amp;= (n-2)S_{n-1}^2+\frac{n-1}n(x_n-\bar x_{n-1})^2
+\end{align}
+\]</span>
+从而：
+<span class="math display">\[
+S_n^2 = \frac{n-2}{n-1}S_{n-1}^2+\frac{1}n(x_n-\bar x_{n-1})^2
+\]</span></p>
+</div>
+<div id="习题4-1" class="section level3 unnumbered">
+<h3>习题4</h3>
+<p><strong>解：</strong></p>
+<p>求均值的递推公式一样，直接向量化运算就行.</p>
+<p>求协方差的递推算法跟求方差类似：</p>
+<p>由于
+<span class="math display">\[
+\Sigma_n = \frac{1}{n-1}\sum_{i=1}^n(x_i-\bar x_n)(x_i-\bar x_n)^T
+\]</span></p>
+<p>从而：
+<span class="math display">\[
+\begin{align}
+(n-1)\Sigma_n &amp;= \sum_{i=1}^n(x_i-\bar x_n)(x_i-\bar x_n)^T\\
+&amp;= \sum_{i=1}^n(x_i-\bar x_{n-1}+\bar x_{n-1}-\bar x_n)(x_i-\bar x_{n-1}-\bar x_{n-1}+\bar x_n)^T\\
+&amp;= (n-2)\Sigma_{n-1}+\frac{n-1}{n}(x_n-\bar x_{n-1})(x_n-\bar x_{n-1})^T
+\end{align}
+\]</span>
+即
+<span class="math display">\[
+\Sigma_n = \frac{n-2}{n-1}\Sigma_{n-1}+\frac{1}{n}(x_n-\bar x_{n-1})(x_n-\bar x_{n-1})^T
+\]</span></p>
+
+</div>
+</div>
+</div>
+<section style="
+    display: block;
+">
+<script src="https://utteranc.es/client.js"
+        repo="huanghaicheng1024/statcomp"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro-error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-graph.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/intro-summary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
