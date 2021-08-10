@@ -6,3 +6,8 @@ intro-graph
 习题-2
 rng-uniform
 习题-3
+rng-nonuni
+笔记
+用逆变换法生成离散型随机数
+r中的离散分布函数
+习题-4
