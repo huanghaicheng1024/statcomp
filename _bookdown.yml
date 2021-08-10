@@ -20,5 +20,6 @@ rmd_files: [
   "intro-error.Rmd",
   "intro-summary.Rmd",
   "intro-graph.Rmd",
-  "rng-uniform.Rmd"
+  "rng-uniform.Rmd",
+  "rng-nonuni.Rmd"
 ]
