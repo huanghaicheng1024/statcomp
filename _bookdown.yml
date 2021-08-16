@@ -21,5 +21,6 @@ rmd_files: [
   "intro-summary.Rmd",
   "intro-graph.Rmd",
   "rng-uniform.Rmd",
-  "rng-nonuni.Rmd"
+  "rng-nonuni.Rmd",
+  "rng-multi.Rmd",
 ]
