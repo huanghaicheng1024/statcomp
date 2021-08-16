@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 随机向量和随机过程的随机数 | 统计计算</title>
+  <meta name="description" content="这是使用bookdwon编写的书籍。" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 随机向量和随机过程的随机数 | 统计计算" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 随机向量和随机过程的随机数 | 统计计算" />
+  
+  <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+<meta name="author" content="Huang" />
+
+
+<meta name="date" content="2021-08-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rng-nonuni.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">统计计算</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>背景</a></li>
+<li class="chapter" data-level="1" data-path="intro-error.html"><a href="intro-error.html"><i class="fa fa-check"></i><b>1</b> 误差</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rng-nonuni.html"><a href="rng-nonuni.html"><i class="fa fa-check"></i><b>5</b> 非均匀随机数生成</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rng-nonuni.html"><a href="rng-nonuni.html#笔记"><i class="fa fa-check"></i><b>5.1</b> 笔记</a></li>
+<li class="chapter" data-level="5.2" data-path="rng-nonuni.html"><a href="rng-nonuni.html#习题-4"><i class="fa fa-check"></i><b>5.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rng-multi.html"><a href="rng-multi.html"><i class="fa fa-check"></i><b>6</b> 随机向量和随机过程的随机数</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rng-multi.html"><a href="rng-multi.html#笔记-1"><i class="fa fa-check"></i><b>6.1</b> 笔记</a></li>
+<li class="chapter" data-level="6.2" data-path="rng-multi.html"><a href="rng-multi.html#习题-5"><i class="fa fa-check"></i><b>6.2</b> 习题</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rng-multi" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> 随机向量和随机过程的随机数</h1>
+<div id="笔记-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> 笔记</h2>
+<p>将书上的一些函数例子自己重新实现一遍。</p>
+<div id="多项分布随机数" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> 多项分布随机数</h3>
+<p>利用条件分布的方法：</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="rng-multi.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入</span></span>
+<span id="cb73-2"><a href="rng-multi.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co"># n: 输出随机数个数</span></span>
+<span id="cb73-3"><a href="rng-multi.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># m: 独立试验次数</span></span>
+<span id="cb73-4"><a href="rng-multi.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prob: 每次使用出现结果概率</span></span>
+<span id="cb73-5"><a href="rng-multi.html#cb73-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="rng-multi.html#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出</span></span>
+<span id="cb73-7"><a href="rng-multi.html#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co"># n行r列，r为每次试验可能出现的结果个数</span></span>
+<span id="cb73-8"><a href="rng-multi.html#cb73-8" aria-hidden="true" tabindex="-1"></a>rng.multinom <span class="ot">&lt;-</span> <span class="cf">function</span>(n, m, prob)</span>
+<span id="cb73-9"><a href="rng-multi.html#cb73-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb73-10"><a href="rng-multi.html#cb73-10" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">length</span>(prob)</span>
+<span id="cb73-11"><a href="rng-multi.html#cb73-11" aria-hidden="true" tabindex="-1"></a>    pp <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(prob[<span class="sc">-</span>r]) <span class="co"># 预先计算二项分布各p值</span></span>
+<span id="cb73-12"><a href="rng-multi.html#cb73-12" aria-hidden="true" tabindex="-1"></a>    pp <span class="ot">&lt;-</span> prob[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>pp)</span>
+<span id="cb73-13"><a href="rng-multi.html#cb73-13" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,n,r)  <span class="co"># 输出结果</span></span>
+<span id="cb73-14"><a href="rng-multi.html#cb73-14" aria-hidden="true" tabindex="-1"></a>    mr <span class="ot">&lt;-</span> m</span>
+<span id="cb73-15"><a href="rng-multi.html#cb73-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 按列循环</span></span>
+<span id="cb73-16"><a href="rng-multi.html#cb73-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">seq</span>(r))</span>
+<span id="cb73-17"><a href="rng-multi.html#cb73-17" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb73-18"><a href="rng-multi.html#cb73-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(j<span class="sc">==</span><span class="dv">1</span>) res[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n,m,prob[[<span class="dv">1</span>]])</span>
+<span id="cb73-19"><a href="rng-multi.html#cb73-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>{</span>
+<span id="cb73-20"><a href="rng-multi.html#cb73-20" aria-hidden="true" tabindex="-1"></a>            mr <span class="ot">&lt;-</span> mr<span class="sc">-</span>res[,j<span class="dv">-1</span>]</span>
+<span id="cb73-21"><a href="rng-multi.html#cb73-21" aria-hidden="true" tabindex="-1"></a>            res[,j] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n,mr,pp[j<span class="dv">-1</span>])</span>
+<span id="cb73-22"><a href="rng-multi.html#cb73-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb73-23"><a href="rng-multi.html#cb73-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb73-24"><a href="rng-multi.html#cb73-24" aria-hidden="true" tabindex="-1"></a>    res</span>
+<span id="cb73-25"><a href="rng-multi.html#cb73-25" aria-hidden="true" tabindex="-1"></a>}    </span></code></pre></div>
+<p>测试：</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="rng-multi.html#cb74-1" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>)</span>
+<span id="cb74-2"><a href="rng-multi.html#cb74-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rng.multinom</span>(<span class="dv">100000</span>, <span class="dv">5</span>, prob)</span>
+<span id="cb74-3"><a href="rng-multi.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (1,2,2)的理论概率：</span></span>
+<span id="cb74-4"><a href="rng-multi.html#cb74-4" aria-hidden="true" tabindex="-1"></a>p122 <span class="ot">&lt;-</span> <span class="dv">30</span><span class="sc">*</span><span class="fu">prod</span>(prob<span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)); p122</span>
+<span id="cb74-5"><a href="rng-multi.html#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.0972</span></span>
+<span id="cb74-6"><a href="rng-multi.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟结果</span></span>
+<span id="cb74-7"><a href="rng-multi.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> x[,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> x[,<span class="dv">3</span>]<span class="sc">==</span><span class="dv">2</span>)</span>
+<span id="cb74-8"><a href="rng-multi.html#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.09752</span></span>
+<span id="cb74-9"><a href="rng-multi.html#cb74-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-10"><a href="rng-multi.html#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="co"># (1,1,3)的理论概率：</span></span>
+<span id="cb74-11"><a href="rng-multi.html#cb74-11" aria-hidden="true" tabindex="-1"></a>p113 <span class="ot">&lt;-</span> <span class="dv">20</span><span class="sc">*</span><span class="fu">prod</span>(prob<span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>)); p113</span>
+<span id="cb74-12"><a href="rng-multi.html#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1296</span></span>
+<span id="cb74-13"><a href="rng-multi.html#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟结果</span></span>
+<span id="cb74-14"><a href="rng-multi.html#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x[,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> x[,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> x[,<span class="dv">3</span>]<span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb74-15"><a href="rng-multi.html#cb74-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.12853</span></span></code></pre></div>
+</div>
+<div id="多元正态分布模拟" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> 多元正态分布模拟</h3>
+<p>利用对协方差矩阵的Cholesky分解。</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="rng-multi.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入</span></span>
+<span id="cb75-2"><a href="rng-multi.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># n: 生成随机数个数</span></span>
+<span id="cb75-3"><a href="rng-multi.html#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mu: 均值向量</span></span>
+<span id="cb75-4"><a href="rng-multi.html#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sigma: 协方差矩阵</span></span>
+<span id="cb75-5"><a href="rng-multi.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出</span></span>
+<span id="cb75-6"><a href="rng-multi.html#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co"># n行m列矩阵，m为维数</span></span>
+<span id="cb75-7"><a href="rng-multi.html#cb75-7" aria-hidden="true" tabindex="-1"></a>rng.mnorm <span class="ot">&lt;-</span> <span class="cf">function</span>(n, mu, Sigma)</span>
+<span id="cb75-8"><a href="rng-multi.html#cb75-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb75-9"><a href="rng-multi.html#cb75-9" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">length</span>(mu)</span>
+<span id="cb75-10"><a href="rng-multi.html#cb75-10" aria-hidden="true" tabindex="-1"></a>    M <span class="ot">&lt;-</span> <span class="fu">chol</span>(Sigma) <span class="co"># Sigma = M&#39; M</span></span>
+<span id="cb75-11"><a href="rng-multi.html#cb75-11" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n<span class="sc">*</span>m),n,m)<span class="sc">%*%</span>M</span>
+<span id="cb75-12"><a href="rng-multi.html#cb75-12" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> mu<span class="sc">+</span><span class="fu">t</span>(y)</span>
+<span id="cb75-13"><a href="rng-multi.html#cb75-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>(x)</span>
+<span id="cb75-14"><a href="rng-multi.html#cb75-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>测试：</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="rng-multi.html#cb76-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rng.mnorm</span>(<span class="dv">1000</span>, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>), <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb76-2"><a href="rng-multi.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>], <span class="at">type=</span><span class="st">&quot;p&quot;</span>, <span class="at">cex=</span><span class="fl">0.1</span>)</span>
+<span id="cb76-3"><a href="rng-multi.html#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">3</span>, <span class="at">h=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">&quot;green&quot;</span>)</span>
+<span id="cb76-4"><a href="rng-multi.html#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span>
+<span id="cb76-5"><a href="rng-multi.html#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]      [,2]</span></span>
+<span id="cb76-6"><a href="rng-multi.html#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 3.8500295 0.9318417</span></span>
+<span id="cb76-7"><a href="rng-multi.html#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 0.9318417 0.9670824</span></span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-84-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="习题-5" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> 习题</h2>
+<div id="习题1-5" class="section level3 unnumbered">
+<h3>习题1</h3>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="rng-multi.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入：</span></span>
+<span id="cb77-2"><a href="rng-multi.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># n: 生成随机数个数</span></span>
+<span id="cb77-3"><a href="rng-multi.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ni: 各个颜色球的个数向量</span></span>
+<span id="cb77-4"><a href="rng-multi.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co"># m: 总共抽取的球个数</span></span>
+<span id="cb77-5"><a href="rng-multi.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出</span></span>
+<span id="cb77-6"><a href="rng-multi.html#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co"># n行r列矩阵，其中r为球的颜色数量</span></span>
+<span id="cb77-7"><a href="rng-multi.html#cb77-7" aria-hidden="true" tabindex="-1"></a>rng.hyper <span class="ot">&lt;-</span> <span class="cf">function</span>(n,ni,m)</span>
+<span id="cb77-8"><a href="rng-multi.html#cb77-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb77-9"><a href="rng-multi.html#cb77-9" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">length</span>(ni)</span>
+<span id="cb77-10"><a href="rng-multi.html#cb77-10" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">sum</span>(ni) <span class="co"># 总球数</span></span>
+<span id="cb77-11"><a href="rng-multi.html#cb77-11" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> N<span class="sc">-</span><span class="fu">cumsum</span>(ni)</span>
+<span id="cb77-12"><a href="rng-multi.html#cb77-12" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,n,r)</span>
+<span id="cb77-13"><a href="rng-multi.html#cb77-13" aria-hidden="true" tabindex="-1"></a>    xr <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>,n)</span>
+<span id="cb77-14"><a href="rng-multi.html#cb77-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 按列循环</span></span>
+<span id="cb77-15"><a href="rng-multi.html#cb77-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">seq</span>(r))</span>
+<span id="cb77-16"><a href="rng-multi.html#cb77-16" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb77-17"><a href="rng-multi.html#cb77-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(j<span class="sc">==</span><span class="dv">1</span>) x[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rhyper</span>(n,ni[[<span class="dv">1</span>]],N[[<span class="dv">1</span>]],m)</span>
+<span id="cb77-18"><a href="rng-multi.html#cb77-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>{</span>
+<span id="cb77-19"><a href="rng-multi.html#cb77-19" aria-hidden="true" tabindex="-1"></a>            xr <span class="ot">&lt;-</span> xr <span class="sc">+</span> x[,j<span class="dv">-1</span>] </span>
+<span id="cb77-20"><a href="rng-multi.html#cb77-20" aria-hidden="true" tabindex="-1"></a>            x[,j] <span class="ot">&lt;-</span> <span class="fu">rhyper</span>(n,ni[[j]],N[[j]],m<span class="sc">-</span>xr)</span>
+<span id="cb77-21"><a href="rng-multi.html#cb77-21" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb77-22"><a href="rng-multi.html#cb77-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb77-23"><a href="rng-multi.html#cb77-23" aria-hidden="true" tabindex="-1"></a>    x</span>
+<span id="cb77-24"><a href="rng-multi.html#cb77-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>测试：</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="rng-multi.html#cb78-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb78-2"><a href="rng-multi.html#cb78-2" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">50</span>)</span>
+<span id="cb78-3"><a href="rng-multi.html#cb78-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb78-4"><a href="rng-multi.html#cb78-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rng.hyper</span>(n,ni,m)</span>
+<span id="cb78-5"><a href="rng-multi.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(x,<span class="dv">2</span>,sum)<span class="sc">/</span>n<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb78-6"><a href="rng-multi.html#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.20152 0.30026 0.49822</span></span></code></pre></div>
+<p>接下来采用试验计数的方法验证一下上面定义的函数：</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="rng-multi.html#cb79-1" aria-hidden="true" tabindex="-1"></a>trial.hyper <span class="ot">&lt;-</span> <span class="cf">function</span>(n,ni,m)</span>
+<span id="cb79-2"><a href="rng-multi.html#cb79-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb79-3"><a href="rng-multi.html#cb79-3" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">length</span>(ni)</span>
+<span id="cb79-4"><a href="rng-multi.html#cb79-4" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>,n,r)</span>
+<span id="cb79-5"><a href="rng-multi.html#cb79-5" aria-hidden="true" tabindex="-1"></a>    s <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>r,<span class="at">times =</span> ni)  <span class="co"># 样本数据</span></span>
+<span id="cb79-6"><a href="rng-multi.html#cb79-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq</span>(n))</span>
+<span id="cb79-7"><a href="rng-multi.html#cb79-7" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb79-8"><a href="rng-multi.html#cb79-8" aria-hidden="true" tabindex="-1"></a>        y <span class="ot">&lt;-</span> <span class="fu">sample</span>(s,m,<span class="at">replace =</span> <span class="cn">FALSE</span>)  <span class="co"># 不放回抽样</span></span>
+<span id="cb79-9"><a href="rng-multi.html#cb79-9" aria-hidden="true" tabindex="-1"></a>        y <span class="ot">&lt;-</span> <span class="fu">factor</span>(y,<span class="at">levels=</span>(<span class="dv">1</span><span class="sc">:</span>r))</span>
+<span id="cb79-10"><a href="rng-multi.html#cb79-10" aria-hidden="true" tabindex="-1"></a>        t <span class="ot">&lt;-</span> <span class="fu">table</span>(y)  <span class="co">#计数</span></span>
+<span id="cb79-11"><a href="rng-multi.html#cb79-11" aria-hidden="true" tabindex="-1"></a>        x[i,] <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(t)</span>
+<span id="cb79-12"><a href="rng-multi.html#cb79-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb79-13"><a href="rng-multi.html#cb79-13" aria-hidden="true" tabindex="-1"></a>    x</span>
+<span id="cb79-14"><a href="rng-multi.html#cb79-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb79-15"><a href="rng-multi.html#cb79-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-16"><a href="rng-multi.html#cb79-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb79-17"><a href="rng-multi.html#cb79-17" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb79-18"><a href="rng-multi.html#cb79-18" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">50</span>)</span>
+<span id="cb79-19"><a href="rng-multi.html#cb79-19" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb79-20"><a href="rng-multi.html#cb79-20" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">trial.hyper</span>(n,ni,m)</span>
+<span id="cb79-21"><a href="rng-multi.html#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(x,<span class="dv">2</span>,sum)<span class="sc">/</span>n<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb79-22"><a href="rng-multi.html#cb79-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.19965 0.29942 0.50093</span></span></code></pre></div>
+<p>非常接近，定义的函数应该是可行的。</p>
+
+</div>
+</div>
+</div>
+<section style="
+    display: block;
+">
+<script src="https://utteranc.es/client.js"
+        repo="huanghaicheng1024/statcomp"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rng-nonuni.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/rng-multi.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
