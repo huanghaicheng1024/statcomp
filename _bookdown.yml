@@ -23,4 +23,5 @@ rmd_files: [
   "rng-uniform.Rmd",
   "rng-nonuni.Rmd",
   "rng-multi.Rmd",
+  "sim-ranquad.Rmd"
 ]

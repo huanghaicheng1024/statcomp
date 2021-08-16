@@ -1,0 +1,149 @@
+# 随机模拟积分 {#sim-ranquad}
+
+## 习题
+
+### 习题1{-}
+
+1. 利用恒等式$EK=\sum_{n=0}^{\infty} P\{K>n\}$。
+
+不难得到，$P\{K>n\}=P\{\sum_{i=1}^n U_i<1\}$，$U_i$iid标准均匀分布，这涉及到标准均匀分布随机数之和的分布，学名为[Irwin-Hall分布](https://www.randomservices.org/random/special/IrwinHall.html)，我们不妨设$X_n=\sum_{i=1}^n U_i$，其密度函数为$f_n(x)$，由Irwin-Hall分布可以知道，
+$$
+P\{K>n\}=P\{\sum_{i=1}^n U_i<1\}=\int_0^1 f_n(x)\mathrm dx=\frac1{n!}
+$$
+
+再利用恒等式$EK=\sum_{n=0}^{\infty} P\{K>n\}=\sum_{n=0}^{\infty} \frac1{n!}=e$
+
+2. 定义函数
+
+```{r}
+sampling_K <- function(n)
+{
+    k <- 10  # 期望多少个均匀分布随机数之和能大于1
+    U <- runif(k*n)
+    U <- matrix(U,n,k)
+    S <- t(apply(U,1,cumsum))
+    x <- vector("integer",n)
+    # 按行循环
+    for(i in seq_along(x)){
+        j <- match(TRUE,S[i,]>1,nomatch = -1)
+        # 匹配失败
+        if(j==-1){
+            jj <- 0
+            while(j!=-1){
+                u <- cumsum(runif(k))
+                j <- match(TRUE,u>1,nomatch = -1)
+                jj <- jj+1
+            }
+            x[[i]] <- jj*k+j
+        }
+        # 匹配成功
+        else{
+            x[[i]] <- j
+        }
+    }
+    list(x=x,S=S)
+}
+```
+
+测试一下：
+
+```{r}
+sampling_K(10)
+```
+
+估计e：
+
+```{r}
+n <- 100000
+x <- sampling_K(n)$x
+e <- mean(x)
+e
+```
+
+3. 直接用R求标准差：
+
+```{r}
+sd(x)
+```
+
+95%置信区间为$\hat\theta \pm 2 \frac{S_N}{ \sqrt{N}}$：
+
+```{r}
+d <- sd(x)/sqrt(n)
+cat("95%置信区间为(",e-d,",",e+d,")",sep = "")
+```
+
+### 习题2{-}
+
+1. 容易知道：
+$$
+P\{M>n\} = P\{U_1\le U_2\le\cdots\le U_n\}
+$$
+
+由于$U_i\overset{iid}{\sim}U(0,1)$，记事件集合$A=\{U_{i_1}\le U_{i_2}\le\cdots\le U_{i_n},i_1,\cdots,i_n\text{是}1,\cdots,n\text{的一个排列}\}$，则$(U_1,\cdots,U_n)$在集合$A$上均匀分布，从而
+$$
+P\{M>n\} = P\{U_1\le U_2\le\cdots\le U_n\}=\frac1{n!}
+$$
+
+2. 显然、易证。
+
+3. 定义函数：
+
+```{r}
+sampling_M <- function(n)
+{
+    k <- 10  # 期望值
+    U <- runif(k*n)
+    U <- matrix(U,n,k)
+    S <- U[,1:(k-1)]>U[,2:k]
+    x <- vector("integer",n)
+    # 按行循环
+    for(i in seq_along(x)){
+        j <- match(TRUE,S[i,],nomatch = -1)
+        # 匹配失败
+        if(j==-1){
+            jj <- 0
+            while(j!=-1){
+                u <- runif(k)
+                u <- u[1:(k-1)]>u[2:k]
+                j <- match(TRUE,u,nomatch = -1)
+                jj <- jj+1
+            }
+            x[[i]] <- jj*k+j+1
+        }
+        # 匹配成功
+        else{
+            x[[i]] <- j+1
+        }
+    }
+    list(x=x,S=S)
+}
+```
+
+测试一下：
+
+```{r}
+sampling_M(10)
+```
+
+估计e：
+
+```{r}
+n <- 100000
+x <- sampling_M(n)$x
+e <- mean(x)
+e
+```
+
+4. 
+
+```{r}
+d <- sd(x)/sqrt(n)
+cat("估计的标准差：",
+   sd(x),
+   "，近似95%的置信区间：(",
+   e-d,",",
+   e+d,")",
+   sep="")
+```
+
