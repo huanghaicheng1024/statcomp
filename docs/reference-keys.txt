@@ -18,3 +18,10 @@ rng-multi
 习题-5
 sim-ranquad
 习题-6
+sim-impsamp
+笔记-2
+例12.1
+平均值法
+重要采样法
+比较
+习题-7
