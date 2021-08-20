@@ -1,0 +1,64 @@
+# 方差缩减技术{# sim-varreduct}
+
+## 习题
+
+### 习题1{-}
+
+先利用平均值法求解积分：
+
+```{r}
+N <- 10000
+u <- matrix(runif(N*2),N,2)
+eta <- exp((u[,1]+u[,2])^2)
+I1 <- mean(eta);I1
+var1 <- var(eta)/N;var1
+```
+
+利用对立变量法改进 ：
+
+```{r}
+N <- 10000
+u <- matrix(runif(N*2),N,2)
+v <- 1-u
+eta <- 0.5*(exp((u[,1]+u[,2])^2)+exp((v[,1]+v[,2])^2))
+I2 <- mean(eta);I2
+var2 <- var(eta)/N;var2
+```
+
+### 习题2{-}
+
+```{r}
+mu <- 0
+Sigma <- 1
+N <- 100000
+n <- c(5,10,30)
+b1 <- vector("double",length(n))
+b2 <- vector("double",length(n))
+s1 <- vector("double",length(n))
+s2 <- vector("double",length(n))
+
+for(i in seq_along(n)){
+    x <- matrix(rnorm(N*n[[i]],mu,Sigma),N,n[[i]])
+    m <- apply(x,1,mean)  # 每组样本均值
+    shat <- apply((x-m)^2,1,sum)
+    shat.1 <- shat/(n[[i]]-1)  # 两个方差估计
+    shat.2 <- shat/n[[i]]
+    b1[[i]] <- mean(shat.1)-Sigma^2
+    b2[[i]] <- mean(shat.2)-Sigma^2
+    s1[[i]] <- mean((shat.1-Sigma)^2)
+    s2[[i]] <- mean((shat.2-Sigma)^2) 
+}
+
+df <- data.frame(
+    n = n,
+    b1 = b1,
+    b2 = b2,
+    s1 = s1,
+    s2 = s2,
+    d = s1-s2
+)
+knitr::kable(df)
+```
+
+1是无偏估计，2是有偏估计。有由可以看出，估计1点偏差要更小但均方误差要更大，所有指标随着样本数的增大都逐渐下降。
+
