@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 方差缩减技术{# sim-varreduct} | 统计计算</title>
+  <meta name="description" content="这是使用bookdwon编写的书籍。" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 方差缩减技术{# sim-varreduct} | 统计计算" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 方差缩减技术{# sim-varreduct} | 统计计算" />
+  
+  <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+<meta name="author" content="Huang" />
+
+
+<meta name="date" content="2021-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sim-stratsamp.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">统计计算</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>背景</a></li>
+<li class="chapter" data-level="1" data-path="intro-error.html"><a href="intro-error.html"><i class="fa fa-check"></i><b>1</b> 误差</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rng-nonuni.html"><a href="rng-nonuni.html"><i class="fa fa-check"></i><b>5</b> 非均匀随机数生成</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rng-nonuni.html"><a href="rng-nonuni.html#笔记"><i class="fa fa-check"></i><b>5.1</b> 笔记</a></li>
+<li class="chapter" data-level="5.2" data-path="rng-nonuni.html"><a href="rng-nonuni.html#习题-4"><i class="fa fa-check"></i><b>5.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rng-multi.html"><a href="rng-multi.html"><i class="fa fa-check"></i><b>6</b> 随机向量和随机过程的随机数</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rng-multi.html"><a href="rng-multi.html#笔记-1"><i class="fa fa-check"></i><b>6.1</b> 笔记</a></li>
+<li class="chapter" data-level="6.2" data-path="rng-multi.html"><a href="rng-multi.html#习题-5"><i class="fa fa-check"></i><b>6.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sim-ranquad.html"><a href="sim-ranquad.html"><i class="fa fa-check"></i><b>7</b> 随机模拟积分</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sim-ranquad.html"><a href="sim-ranquad.html#习题-6"><i class="fa fa-check"></i><b>7.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sim-impsamp.html"><a href="sim-impsamp.html"><i class="fa fa-check"></i><b>8</b> 重要抽样法</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim-impsamp.html"><a href="sim-impsamp.html#笔记-2"><i class="fa fa-check"></i><b>8.1</b> 笔记</a></li>
+<li class="chapter" data-level="8.2" data-path="sim-impsamp.html"><a href="sim-impsamp.html#习题-7"><i class="fa fa-check"></i><b>8.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html"><i class="fa fa-check"></i><b>9</b> 分层抽样法</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html#习题-8"><i class="fa fa-check"></i><b>9.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="方差缩减技术-sim-varreduct.html"><a href="方差缩减技术-sim-varreduct.html"><i class="fa fa-check"></i><b>10</b> 方差缩减技术{# sim-varreduct}</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="方差缩减技术-sim-varreduct.html"><a href="方差缩减技术-sim-varreduct.html#习题-9"><i class="fa fa-check"></i><b>10.1</b> 习题</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="方差缩减技术-sim-varreduct" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> 方差缩减技术{# sim-varreduct}</h1>
+<div id="习题-9" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> 习题</h2>
+<div id="习题1-9" class="section level3 unnumbered">
+<h3>习题1</h3>
+<p>先利用平均值法求解积分：</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="方差缩减技术-sim-varreduct.html#cb121-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb121-2"><a href="方差缩减技术-sim-varreduct.html#cb121-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(N<span class="sc">*</span><span class="dv">2</span>),N,<span class="dv">2</span>)</span>
+<span id="cb121-3"><a href="方差缩减技术-sim-varreduct.html#cb121-3" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> <span class="fu">exp</span>((u[,<span class="dv">1</span>]<span class="sc">+</span>u[,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb121-4"><a href="方差缩减技术-sim-varreduct.html#cb121-4" aria-hidden="true" tabindex="-1"></a>I1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I1</span>
+<span id="cb121-5"><a href="方差缩减技术-sim-varreduct.html#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4.878306</span></span>
+<span id="cb121-6"><a href="方差缩减技术-sim-varreduct.html#cb121-6" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N;var1</span>
+<span id="cb121-7"><a href="方差缩减技术-sim-varreduct.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.003524155</span></span></code></pre></div>
+<p>利用对立变量法改进 ：</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="方差缩减技术-sim-varreduct.html#cb122-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb122-2"><a href="方差缩减技术-sim-varreduct.html#cb122-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(N<span class="sc">*</span><span class="dv">2</span>),N,<span class="dv">2</span>)</span>
+<span id="cb122-3"><a href="方差缩减技术-sim-varreduct.html#cb122-3" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span>u</span>
+<span id="cb122-4"><a href="方差缩减技术-sim-varreduct.html#cb122-4" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>(<span class="fu">exp</span>((u[,<span class="dv">1</span>]<span class="sc">+</span>u[,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>)<span class="sc">+</span><span class="fu">exp</span>((v[,<span class="dv">1</span>]<span class="sc">+</span>v[,<span class="dv">2</span>])<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb122-5"><a href="方差缩减技术-sim-varreduct.html#cb122-5" aria-hidden="true" tabindex="-1"></a>I2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I2</span>
+<span id="cb122-6"><a href="方差缩减技术-sim-varreduct.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4.929019</span></span>
+<span id="cb122-7"><a href="方差缩减技术-sim-varreduct.html#cb122-7" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N;var2</span>
+<span id="cb122-8"><a href="方差缩减技术-sim-varreduct.html#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.001189351</span></span></code></pre></div>
+</div>
+<div id="习题2-8" class="section level3 unnumbered">
+<h3>习题2</h3>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="方差缩减技术-sim-varreduct.html#cb123-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb123-2"><a href="方差缩减技术-sim-varreduct.html#cb123-2" aria-hidden="true" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb123-3"><a href="方差缩减技术-sim-varreduct.html#cb123-3" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb123-4"><a href="方差缩减技术-sim-varreduct.html#cb123-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">30</span>)</span>
+<span id="cb123-5"><a href="方差缩减技术-sim-varreduct.html#cb123-5" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,<span class="fu">length</span>(n))</span>
+<span id="cb123-6"><a href="方差缩减技术-sim-varreduct.html#cb123-6" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,<span class="fu">length</span>(n))</span>
+<span id="cb123-7"><a href="方差缩减技术-sim-varreduct.html#cb123-7" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,<span class="fu">length</span>(n))</span>
+<span id="cb123-8"><a href="方差缩减技术-sim-varreduct.html#cb123-8" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;double&quot;</span>,<span class="fu">length</span>(n))</span>
+<span id="cb123-9"><a href="方差缩减技术-sim-varreduct.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="方差缩减技术-sim-varreduct.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(n)){</span>
+<span id="cb123-11"><a href="方差缩减技术-sim-varreduct.html#cb123-11" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(N<span class="sc">*</span>n[[i]],mu,Sigma),N,n[[i]])</span>
+<span id="cb123-12"><a href="方差缩减技术-sim-varreduct.html#cb123-12" aria-hidden="true" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="fu">apply</span>(x,<span class="dv">1</span>,mean)  <span class="co"># 每组样本均值</span></span>
+<span id="cb123-13"><a href="方差缩减技术-sim-varreduct.html#cb123-13" aria-hidden="true" tabindex="-1"></a>    shat <span class="ot">&lt;-</span> <span class="fu">apply</span>((x<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">2</span>,<span class="dv">1</span>,sum)</span>
+<span id="cb123-14"><a href="方差缩减技术-sim-varreduct.html#cb123-14" aria-hidden="true" tabindex="-1"></a>    shat<span class="fl">.1</span> <span class="ot">&lt;-</span> shat<span class="sc">/</span>(n[[i]]<span class="sc">-</span><span class="dv">1</span>)  <span class="co"># 两个方差估计</span></span>
+<span id="cb123-15"><a href="方差缩减技术-sim-varreduct.html#cb123-15" aria-hidden="true" tabindex="-1"></a>    shat<span class="fl">.2</span> <span class="ot">&lt;-</span> shat<span class="sc">/</span>n[[i]]</span>
+<span id="cb123-16"><a href="方差缩减技术-sim-varreduct.html#cb123-16" aria-hidden="true" tabindex="-1"></a>    b1[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(shat<span class="fl">.1</span>)<span class="sc">-</span>Sigma<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb123-17"><a href="方差缩减技术-sim-varreduct.html#cb123-17" aria-hidden="true" tabindex="-1"></a>    b2[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(shat<span class="fl">.2</span>)<span class="sc">-</span>Sigma<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb123-18"><a href="方差缩减技术-sim-varreduct.html#cb123-18" aria-hidden="true" tabindex="-1"></a>    s1[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>((shat<span class="fl">.1</span><span class="sc">-</span>Sigma)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb123-19"><a href="方差缩减技术-sim-varreduct.html#cb123-19" aria-hidden="true" tabindex="-1"></a>    s2[[i]] <span class="ot">&lt;-</span> <span class="fu">mean</span>((shat<span class="fl">.2</span><span class="sc">-</span>Sigma)<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb123-20"><a href="方差缩减技术-sim-varreduct.html#cb123-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb123-21"><a href="方差缩减技术-sim-varreduct.html#cb123-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-22"><a href="方差缩减技术-sim-varreduct.html#cb123-22" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb123-23"><a href="方差缩减技术-sim-varreduct.html#cb123-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> n,</span>
+<span id="cb123-24"><a href="方差缩减技术-sim-varreduct.html#cb123-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">b1 =</span> b1,</span>
+<span id="cb123-25"><a href="方差缩减技术-sim-varreduct.html#cb123-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">b2 =</span> b2,</span>
+<span id="cb123-26"><a href="方差缩减技术-sim-varreduct.html#cb123-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">s1 =</span> s1,</span>
+<span id="cb123-27"><a href="方差缩减技术-sim-varreduct.html#cb123-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">s2 =</span> s2,</span>
+<span id="cb123-28"><a href="方差缩减技术-sim-varreduct.html#cb123-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">d =</span> s1<span class="sc">-</span>s2</span>
+<span id="cb123-29"><a href="方差缩减技术-sim-varreduct.html#cb123-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb123-30"><a href="方差缩减技术-sim-varreduct.html#cb123-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">n</th>
+<th align="right">b1</th>
+<th align="right">b2</th>
+<th align="right">s1</th>
+<th align="right">s2</th>
+<th align="right">d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">-0.0012968</td>
+<td align="right">-0.2010375</td>
+<td align="right">0.5002920</td>
+<td align="right">0.3606019</td>
+<td align="right">0.1396901</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">-0.0001247</td>
+<td align="right">-0.1001122</td>
+<td align="right">0.2228895</td>
+<td align="right">0.1905629</td>
+<td align="right">0.0323266</td>
+</tr>
+<tr class="odd">
+<td align="right">30</td>
+<td align="right">-0.0004414</td>
+<td align="right">-0.0337600</td>
+<td align="right">0.0688494</td>
+<td align="right">0.0654755</td>
+<td align="right">0.0033739</td>
+</tr>
+</tbody>
+</table>
+<p>1是无偏估计，2是有偏估计。有由可以看出，估计1点偏差要更小但均方误差要更大，所有指标随着样本数的增大都逐渐下降。</p>
+
+</div>
+</div>
+</div>
+<section style="
+    display: block;
+">
+<script src="https://utteranc.es/client.js"
+        repo="huanghaicheng1024/statcomp"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sim-stratsamp.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/sim-varreduct.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

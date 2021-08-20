@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 分层抽样法 | 统计计算</title>
+  <meta name="description" content="这是使用bookdwon编写的书籍。" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 分层抽样法 | 统计计算" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 分层抽样法 | 统计计算" />
+  
+  <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+<meta name="author" content="Huang" />
+
+
+<meta name="date" content="2021-08-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sim-impsamp.html"/>
+<link rel="next" href="方差缩减技术-sim-varreduct.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">统计计算</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>背景</a></li>
+<li class="chapter" data-level="1" data-path="intro-error.html"><a href="intro-error.html"><i class="fa fa-check"></i><b>1</b> 误差</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rng-nonuni.html"><a href="rng-nonuni.html"><i class="fa fa-check"></i><b>5</b> 非均匀随机数生成</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rng-nonuni.html"><a href="rng-nonuni.html#笔记"><i class="fa fa-check"></i><b>5.1</b> 笔记</a></li>
+<li class="chapter" data-level="5.2" data-path="rng-nonuni.html"><a href="rng-nonuni.html#习题-4"><i class="fa fa-check"></i><b>5.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rng-multi.html"><a href="rng-multi.html"><i class="fa fa-check"></i><b>6</b> 随机向量和随机过程的随机数</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rng-multi.html"><a href="rng-multi.html#笔记-1"><i class="fa fa-check"></i><b>6.1</b> 笔记</a></li>
+<li class="chapter" data-level="6.2" data-path="rng-multi.html"><a href="rng-multi.html#习题-5"><i class="fa fa-check"></i><b>6.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sim-ranquad.html"><a href="sim-ranquad.html"><i class="fa fa-check"></i><b>7</b> 随机模拟积分</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sim-ranquad.html"><a href="sim-ranquad.html#习题-6"><i class="fa fa-check"></i><b>7.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sim-impsamp.html"><a href="sim-impsamp.html"><i class="fa fa-check"></i><b>8</b> 重要抽样法</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim-impsamp.html"><a href="sim-impsamp.html#笔记-2"><i class="fa fa-check"></i><b>8.1</b> 笔记</a></li>
+<li class="chapter" data-level="8.2" data-path="sim-impsamp.html"><a href="sim-impsamp.html#习题-7"><i class="fa fa-check"></i><b>8.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html"><i class="fa fa-check"></i><b>9</b> 分层抽样法</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html#习题-8"><i class="fa fa-check"></i><b>9.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="方差缩减技术-sim-varreduct.html"><a href="方差缩减技术-sim-varreduct.html"><i class="fa fa-check"></i><b>10</b> 方差缩减技术{# sim-varreduct}</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="方差缩减技术-sim-varreduct.html"><a href="方差缩减技术-sim-varreduct.html#习题-9"><i class="fa fa-check"></i><b>10.1</b> 习题</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sim-stratsamp" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> 分层抽样法</h1>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="sim-stratsamp.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="习题-8" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> 习题</h2>
+<div id="习题1-8" class="section level3 unnumbered">
+<h3>习题1</h3>
+<p>利用拉格朗日乘子法。记
+<span class="math display">\[
+g(\alpha_1,\cdots,\alpha_m) = \alpha_1+\cdots+\alpha_m-1\\
+L(\alpha_1,\cdots,\alpha_m,\lambda^2) = f(\alpha_1,\cdots,\alpha_m)+\lambda^2 g(\alpha_1,\cdots,\alpha_m)
+\]</span></p>
+<p>令：
+<span class="math display">\[
+\frac{\partial L}{\partial \alpha_i}=-\frac{\sigma_i^2}{\alpha_i^2}+\lambda^2=0\\
+\frac{\partial L}{\partial \lambda} = \alpha_1+\cdots+\alpha_m-1=0
+\]</span></p>
+<p>可以得到：
+<span class="math display">\[
+\lambda = \frac{\sigma_i}{\alpha_i}
+\]</span></p>
+<p>则：
+<span class="math display">\[
+\alpha_1+\cdots+\alpha_m =  \frac{\sigma_1+\cdots+\sigma_m}{\lambda}
+\]</span></p>
+<p>可以解得
+<span class="math display">\[
+\lambda = \sigma_1+\cdots+\sigma_m
+\]</span></p>
+<p>从而：
+<span class="math display">\[
+\alpha_i=\frac{\sigma_i}{\sum_{k=1}^m\sigma_k},i=1,\cdots,m
+\]</span></p>
+<p>可以验证这是最小值点。</p>
+</div>
+<div id="习题2-7" class="section level3 unnumbered">
+<h3>习题2</h3>
+<p>先看一下准确值：</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="sim-stratsamp.html#cb102-1" aria-hidden="true" tabindex="-1"></a>I.true <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>);I.true</span>
+<span id="cb102-2"><a href="sim-stratsamp.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.350402</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>随机投点法：在矩形<span class="math inline">\([-1,1]\times[0,e]\)</span>内随机投点</li>
+</ol>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="sim-stratsamp.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机投点法</span></span>
+<span id="cb103-2"><a href="sim-stratsamp.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入：试投点数，随机种子（默认为1）</span></span>
+<span id="cb103-3"><a href="sim-stratsamp.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出：积分估计值</span></span>
+<span id="cb103-4"><a href="sim-stratsamp.html#cb103-4" aria-hidden="true" tabindex="-1"></a>method<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">seed=</span><span class="dv">1</span>)</span>
+<span id="cb103-5"><a href="sim-stratsamp.html#cb103-5" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb103-6"><a href="sim-stratsamp.html#cb103-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(seed)</span>
+<span id="cb103-7"><a href="sim-stratsamp.html#cb103-7" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">runif</span>(N,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb103-8"><a href="sim-stratsamp.html#cb103-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">runif</span>(N,<span class="dv">0</span>,<span class="fu">exp</span>(<span class="dv">1</span>))</span>
+<span id="cb103-9"><a href="sim-stratsamp.html#cb103-9" aria-hidden="true" tabindex="-1"></a>    I <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">*</span><span class="fu">mean</span>(y<span class="sc">&lt;=</span><span class="fu">exp</span>(x))</span>
+<span id="cb103-10"><a href="sim-stratsamp.html#cb103-10" aria-hidden="true" tabindex="-1"></a>    I</span>
+<span id="cb103-11"><a href="sim-stratsamp.html#cb103-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb103-12"><a href="sim-stratsamp.html#cb103-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-13"><a href="sim-stratsamp.html#cb103-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb103-14"><a href="sim-stratsamp.html#cb103-14" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb103-15"><a href="sim-stratsamp.html#cb103-15" aria-hidden="true" tabindex="-1"></a>I1.est <span class="ot">&lt;-</span> <span class="fu">method.1</span>(N);I1.est</span>
+<span id="cb103-16"><a href="sim-stratsamp.html#cb103-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.375778</span></span></code></pre></div>
+<p>平均值法：</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="sim-stratsamp.html#cb104-1" aria-hidden="true" tabindex="-1"></a>method<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">seed=</span><span class="dv">1</span>)</span>
+<span id="cb104-2"><a href="sim-stratsamp.html#cb104-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb104-3"><a href="sim-stratsamp.html#cb104-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(seed)</span>
+<span id="cb104-4"><a href="sim-stratsamp.html#cb104-4" aria-hidden="true" tabindex="-1"></a>    u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb104-5"><a href="sim-stratsamp.html#cb104-5" aria-hidden="true" tabindex="-1"></a>    I <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(<span class="fu">exp</span>(u))</span>
+<span id="cb104-6"><a href="sim-stratsamp.html#cb104-6" aria-hidden="true" tabindex="-1"></a>    I</span>
+<span id="cb104-7"><a href="sim-stratsamp.html#cb104-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb104-8"><a href="sim-stratsamp.html#cb104-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-9"><a href="sim-stratsamp.html#cb104-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb104-10"><a href="sim-stratsamp.html#cb104-10" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb104-11"><a href="sim-stratsamp.html#cb104-11" aria-hidden="true" tabindex="-1"></a>I2.est <span class="ot">&lt;-</span> <span class="fu">method.2</span>(N);I2.est</span>
+<span id="cb104-12"><a href="sim-stratsamp.html#cb104-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.35767</span></span></code></pre></div>
+<p>重要抽样法：可以利用梯形分布，取试投密度为
+<span class="math display">\[
+g(x)=e^{-1}x+0.5,\quad x\in [-1,1]
+\]</span></p>
+<p>为得到服从<span class="math inline">\(g(x)\)</span>的样本，可以生成标准均匀分布随机数<span class="math inline">\(U\)</span>，再利用变换
+<span class="math display">\[
+X = -\frac{e}{2}+\sqrt{2eU+1-e+\frac {e^2}{4}}
+\]</span>
+即可得到<span class="math inline">\(g(x)\)</span>的样本。</p>
+<p>其中<span class="math inline">\(g(x)\)</span>跟被积函数的对比如下：</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="sim-stratsamp.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(x),<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))</span>
+<span id="cb105-2"><a href="sim-stratsamp.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>x<span class="fl">+0.5</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-116-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sim-stratsamp.html#cb106-1" aria-hidden="true" tabindex="-1"></a>method<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">seed=</span><span class="dv">1</span>)</span>
+<span id="cb106-2"><a href="sim-stratsamp.html#cb106-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb106-3"><a href="sim-stratsamp.html#cb106-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(seed)</span>
+<span id="cb106-4"><a href="sim-stratsamp.html#cb106-4" aria-hidden="true" tabindex="-1"></a>    u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N)</span>
+<span id="cb106-5"><a href="sim-stratsamp.html#cb106-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">/</span><span class="dv">2</span><span class="sc">+</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">*</span>u<span class="sc">+</span><span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="dv">1</span>)<span class="sc">+</span><span class="fu">exp</span>(<span class="dv">2</span>)<span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb106-6"><a href="sim-stratsamp.html#cb106-6" aria-hidden="true" tabindex="-1"></a>    eta <span class="ot">&lt;-</span> <span class="fu">exp</span>(x)<span class="sc">/</span>(<span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>x<span class="fl">+0.5</span>)</span>
+<span id="cb106-7"><a href="sim-stratsamp.html#cb106-7" aria-hidden="true" tabindex="-1"></a>    I <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta)</span>
+<span id="cb106-8"><a href="sim-stratsamp.html#cb106-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb106-9"><a href="sim-stratsamp.html#cb106-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-10"><a href="sim-stratsamp.html#cb106-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb106-11"><a href="sim-stratsamp.html#cb106-11" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb106-12"><a href="sim-stratsamp.html#cb106-12" aria-hidden="true" tabindex="-1"></a>I3.est <span class="ot">&lt;-</span> <span class="fu">method.3</span>(N);I3.est</span>
+<span id="cb106-13"><a href="sim-stratsamp.html#cb106-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.353182</span></span></code></pre></div>
+<p>分层抽样法：这里简单点，分为<span class="math inline">\([-1,0],[0,1]\)</span>两个区间，都使用平均值法：</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="sim-stratsamp.html#cb107-1" aria-hidden="true" tabindex="-1"></a>method<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">seed=</span><span class="dv">1</span>)</span>
+<span id="cb107-2"><a href="sim-stratsamp.html#cb107-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb107-3"><a href="sim-stratsamp.html#cb107-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(seed)</span>
+<span id="cb107-4"><a href="sim-stratsamp.html#cb107-4" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(N<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb107-5"><a href="sim-stratsamp.html#cb107-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># [-1,0]</span></span>
+<span id="cb107-6"><a href="sim-stratsamp.html#cb107-6" aria-hidden="true" tabindex="-1"></a>    u <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb107-7"><a href="sim-stratsamp.html#cb107-7" aria-hidden="true" tabindex="-1"></a>    I1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">exp</span>(u))</span>
+<span id="cb107-8"><a href="sim-stratsamp.html#cb107-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># [0,1]</span></span>
+<span id="cb107-9"><a href="sim-stratsamp.html#cb107-9" aria-hidden="true" tabindex="-1"></a>    u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N<span class="sc">-</span>n)</span>
+<span id="cb107-10"><a href="sim-stratsamp.html#cb107-10" aria-hidden="true" tabindex="-1"></a>    I2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">exp</span>(u))</span>
+<span id="cb107-11"><a href="sim-stratsamp.html#cb107-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb107-12"><a href="sim-stratsamp.html#cb107-12" aria-hidden="true" tabindex="-1"></a>    I1<span class="sc">+</span>I2</span>
+<span id="cb107-13"><a href="sim-stratsamp.html#cb107-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb107-14"><a href="sim-stratsamp.html#cb107-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-15"><a href="sim-stratsamp.html#cb107-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb107-16"><a href="sim-stratsamp.html#cb107-16" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb107-17"><a href="sim-stratsamp.html#cb107-17" aria-hidden="true" tabindex="-1"></a>I4.est <span class="ot">&lt;-</span> <span class="fu">method.4</span>(N);I4.est</span>
+<span id="cb107-18"><a href="sim-stratsamp.html#cb107-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.354859</span></span></code></pre></div>
+<p>四种方法对比一下：</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sim-stratsamp.html#cb108-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb108-2"><a href="sim-stratsamp.html#cb108-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">准确值</span><span class="st">`</span> <span class="ot">=</span> I.true,</span>
+<span id="cb108-3"><a href="sim-stratsamp.html#cb108-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">随机投点法</span><span class="st">`</span> <span class="ot">=</span> I1.est,</span>
+<span id="cb108-4"><a href="sim-stratsamp.html#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">平均值法</span><span class="st">`</span> <span class="ot">=</span> I2.est,</span>
+<span id="cb108-5"><a href="sim-stratsamp.html#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">重要抽样法</span><span class="st">`</span> <span class="ot">=</span> I3.est,</span>
+<span id="cb108-6"><a href="sim-stratsamp.html#cb108-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">分层抽样法</span><span class="st">`</span> <span class="ot">=</span> I4.est</span>
+<span id="cb108-7"><a href="sim-stratsamp.html#cb108-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb108-8"><a href="sim-stratsamp.html#cb108-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">准确值</th>
+<th align="center">随机投点法</th>
+<th align="center">平均值法</th>
+<th align="center">重要抽样法</th>
+<th align="center">分层抽样法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.350402</td>
+<td align="center">2.375778</td>
+<td align="center">2.35767</td>
+<td align="center">2.353182</td>
+<td align="center">2.354859</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li><p>没怎么看懂，先跳过咯</p></li>
+<li></li>
+</ol>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="sim-stratsamp.html#cb109-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb109-2"><a href="sim-stratsamp.html#cb109-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb109-3"><a href="sim-stratsamp.html#cb109-3" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>B</span>
+<span id="cb109-4"><a href="sim-stratsamp.html#cb109-4" aria-hidden="true" tabindex="-1"></a>I1 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(seed,method<span class="fl">.1</span>,<span class="at">N=</span>N)</span>
+<span id="cb109-5"><a href="sim-stratsamp.html#cb109-5" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(I1)</span>
+<span id="cb109-6"><a href="sim-stratsamp.html#cb109-6" aria-hidden="true" tabindex="-1"></a>I2 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(seed,method<span class="fl">.2</span>,<span class="at">N=</span>N)</span>
+<span id="cb109-7"><a href="sim-stratsamp.html#cb109-7" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(I2)</span>
+<span id="cb109-8"><a href="sim-stratsamp.html#cb109-8" aria-hidden="true" tabindex="-1"></a>I3 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(seed,method<span class="fl">.3</span>,<span class="at">N=</span>N)</span>
+<span id="cb109-9"><a href="sim-stratsamp.html#cb109-9" aria-hidden="true" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">var</span>(I3)</span>
+<span id="cb109-10"><a href="sim-stratsamp.html#cb109-10" aria-hidden="true" tabindex="-1"></a>I4 <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(seed,method<span class="fl">.4</span>,<span class="at">N=</span>N)</span>
+<span id="cb109-11"><a href="sim-stratsamp.html#cb109-11" aria-hidden="true" tabindex="-1"></a>var4 <span class="ot">&lt;-</span> <span class="fu">var</span>(I4)</span>
+<span id="cb109-12"><a href="sim-stratsamp.html#cb109-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-13"><a href="sim-stratsamp.html#cb109-13" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb109-14"><a href="sim-stratsamp.html#cb109-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">随机投点法</span><span class="st">`</span> <span class="ot">=</span> var1,</span>
+<span id="cb109-15"><a href="sim-stratsamp.html#cb109-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">平均值法</span><span class="st">`</span> <span class="ot">=</span> var2,</span>
+<span id="cb109-16"><a href="sim-stratsamp.html#cb109-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">重要抽样法</span><span class="st">`</span> <span class="ot">=</span> var3,</span>
+<span id="cb109-17"><a href="sim-stratsamp.html#cb109-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">分层抽样法</span><span class="st">`</span> <span class="ot">=</span> var4</span>
+<span id="cb109-18"><a href="sim-stratsamp.html#cb109-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb109-19"><a href="sim-stratsamp.html#cb109-19" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(df) <span class="ot">&lt;-</span> <span class="st">&quot;抽样分布方差估计&quot;</span></span>
+<span id="cb109-20"><a href="sim-stratsamp.html#cb109-20" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df,<span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">随机投点法</th>
+<th align="center">平均值法</th>
+<th align="center">重要抽样法</th>
+<th align="center">分层抽样法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>抽样分布方差估计</td>
+<td align="center">0.0006886</td>
+<td align="center">0.0001732</td>
+<td align="center">1.43e-05</td>
+<td align="center">5.43e-05</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" style="list-style-type: decimal">
+<li>直接利用3的一些结果：</li>
+</ol>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="sim-stratsamp.html#cb110-1" aria-hidden="true" tabindex="-1"></a>mae1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(I1<span class="sc">-</span>I.true))</span>
+<span id="cb110-2"><a href="sim-stratsamp.html#cb110-2" aria-hidden="true" tabindex="-1"></a>mae2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(I2<span class="sc">-</span>I.true))</span>
+<span id="cb110-3"><a href="sim-stratsamp.html#cb110-3" aria-hidden="true" tabindex="-1"></a>mae3 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(I3<span class="sc">-</span>I.true))</span>
+<span id="cb110-4"><a href="sim-stratsamp.html#cb110-4" aria-hidden="true" tabindex="-1"></a>mae4 <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">abs</span>(I4<span class="sc">-</span>I.true))</span>
+<span id="cb110-5"><a href="sim-stratsamp.html#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="sim-stratsamp.html#cb110-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb110-7"><a href="sim-stratsamp.html#cb110-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">随机投点法</span><span class="st">`</span> <span class="ot">=</span> mae1,</span>
+<span id="cb110-8"><a href="sim-stratsamp.html#cb110-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">平均值法</span><span class="st">`</span> <span class="ot">=</span> mae2,</span>
+<span id="cb110-9"><a href="sim-stratsamp.html#cb110-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">重要抽样法</span><span class="st">`</span> <span class="ot">=</span> mae3,</span>
+<span id="cb110-10"><a href="sim-stratsamp.html#cb110-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">分层抽样法</span><span class="st">`</span> <span class="ot">=</span> mae4</span>
+<span id="cb110-11"><a href="sim-stratsamp.html#cb110-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb110-12"><a href="sim-stratsamp.html#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(df) <span class="ot">&lt;-</span> <span class="st">&quot;MAE估计&quot;</span></span>
+<span id="cb110-13"><a href="sim-stratsamp.html#cb110-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df,<span class="at">row.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">随机投点法</th>
+<th align="center">平均值法</th>
+<th align="center">重要抽样法</th>
+<th align="center">分层抽样法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MAE估计</td>
+<td align="center">0.0208923</td>
+<td align="center">0.0104201</td>
+<td align="center">0.0030033</td>
+<td align="center">0.005848</td>
+</tr>
+</tbody>
+</table>
+<p>重要抽样法&lt;分层平均值抽样法&lt;平均值法&lt;随机投点法。</p>
+</div>
+<div id="习题3-5" class="section level3 unnumbered">
+<h3>习题3</h3>
+<ol style="list-style-type: decimal">
+<li>先定义函数：</li>
+</ol>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="sim-stratsamp.html#cb111-1" aria-hidden="true" tabindex="-1"></a>fun.h <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x<span class="sc">&gt;</span><span class="dv">0</span><span class="sc">&amp;</span>x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>x<span class="sc">^</span><span class="dv">2</span>),<span class="dv">0</span>);</span>
+<span id="cb111-2"><a href="sim-stratsamp.html#cb111-2" aria-hidden="true" tabindex="-1"></a>fun.f<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x<span class="sc">&gt;</span><span class="dv">0</span><span class="sc">&amp;</span>x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>);</span>
+<span id="cb111-3"><a href="sim-stratsamp.html#cb111-3" aria-hidden="true" tabindex="-1"></a>fun.f<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x<span class="sc">&gt;</span><span class="dv">0</span>,<span class="fu">exp</span>(<span class="sc">-</span>x),<span class="dv">0</span>);</span>
+<span id="cb111-4"><a href="sim-stratsamp.html#cb111-4" aria-hidden="true" tabindex="-1"></a>fun.f<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">1</span><span class="sc">/</span>(pi<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>x<span class="sc">^</span><span class="dv">2</span>));</span>
+<span id="cb111-5"><a href="sim-stratsamp.html#cb111-5" aria-hidden="true" tabindex="-1"></a>fun.f<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x<span class="sc">&gt;</span><span class="dv">0</span><span class="sc">&amp;</span>x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)),<span class="dv">0</span>);</span>
+<span id="cb111-6"><a href="sim-stratsamp.html#cb111-6" aria-hidden="true" tabindex="-1"></a>fun.f<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">ifelse</span>(x<span class="sc">&gt;</span><span class="dv">0</span><span class="sc">&amp;</span>x<span class="sc">&lt;</span><span class="dv">1</span>,<span class="dv">4</span><span class="sc">/</span>(pi<span class="sc">*</span>(<span class="dv">1</span><span class="sc">+</span>x<span class="sc">^</span><span class="dv">2</span>)),<span class="dv">0</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sim-stratsamp.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 绘图</span></span>
+<span id="cb112-2"><a href="sim-stratsamp.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb112-3"><a href="sim-stratsamp.html#cb112-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb112-4"><a href="sim-stratsamp.html#cb112-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.h,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.h&quot;</span>))<span class="sc">+</span></span>
+<span id="cb112-5"><a href="sim-stratsamp.html#cb112-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.f<span class="fl">.1</span>,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.f.1&quot;</span>))<span class="sc">+</span></span>
+<span id="cb112-6"><a href="sim-stratsamp.html#cb112-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.f<span class="fl">.2</span>,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.f.2&quot;</span>))<span class="sc">+</span></span>
+<span id="cb112-7"><a href="sim-stratsamp.html#cb112-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.f<span class="fl">.3</span>,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.f.3&quot;</span>))<span class="sc">+</span></span>
+<span id="cb112-8"><a href="sim-stratsamp.html#cb112-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.f<span class="fl">.4</span>,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.f.4&quot;</span>))<span class="sc">+</span></span>
+<span id="cb112-9"><a href="sim-stratsamp.html#cb112-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_function</span>(<span class="at">fun=</span>fun.f<span class="fl">.5</span>,<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;fun.f.5&quot;</span>))</span></code></pre></div>
+<p><img src="statcomp_files/figure-html/unnamed-chunk-123-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(I_1\)</span>的估计实际上是平均值法：</li>
+</ol>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="sim-stratsamp.html#cb113-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb113-2"><a href="sim-stratsamp.html#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="sim-stratsamp.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="co"># I1</span></span>
+<span id="cb113-4"><a href="sim-stratsamp.html#cb113-4" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N)</span>
+<span id="cb113-5"><a href="sim-stratsamp.html#cb113-5" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> <span class="fu">fun.h</span>(u)</span>
+<span id="cb113-6"><a href="sim-stratsamp.html#cb113-6" aria-hidden="true" tabindex="-1"></a>I1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I1</span>
+<span id="cb113-7"><a href="sim-stratsamp.html#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5252989</span></span>
+<span id="cb113-8"><a href="sim-stratsamp.html#cb113-8" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N</span></code></pre></div>
+<p><span class="math inline">\(I_2\)</span>需要生成<span class="math inline">\(e^{-x}\)</span>的样本，再判断是否在<span class="math inline">\((0,1)\)</span>内，满足就保留，再进行重要性采样。</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sim-stratsamp.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I2</span></span>
+<span id="cb114-2"><a href="sim-stratsamp.html#cb114-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb114-3"><a href="sim-stratsamp.html#cb114-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[x<span class="sc">&gt;</span><span class="dv">0</span><span class="sc">&amp;</span>x<span class="sc">&lt;</span><span class="dv">1</span>]</span>
+<span id="cb114-4"><a href="sim-stratsamp.html#cb114-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x);n</span>
+<span id="cb114-5"><a href="sim-stratsamp.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12675</span></span>
+<span id="cb114-6"><a href="sim-stratsamp.html#cb114-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="dv">1</span><span class="sc">:</span>N]</span>
+<span id="cb114-7"><a href="sim-stratsamp.html#cb114-7" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> n<span class="sc">/</span><span class="dv">2</span><span class="sc">/</span>N<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb114-8"><a href="sim-stratsamp.html#cb114-8" aria-hidden="true" tabindex="-1"></a>I2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I2</span>
+<span id="cb114-9"><a href="sim-stratsamp.html#cb114-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5260915</span></span>
+<span id="cb114-10"><a href="sim-stratsamp.html#cb114-10" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N</span></code></pre></div>
+<p><span class="math inline">\(f_3(x)\)</span>是柯西分布，先生成柯西分布随机数，再判断是否在<span class="math inline">\((0,1)\)</span>内，满足就保留，再进行重要性采样。</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="sim-stratsamp.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I3</span></span>
+<span id="cb115-2"><a href="sim-stratsamp.html#cb115-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rcauchy</span>(<span class="dv">5</span><span class="sc">*</span>N)</span>
+<span id="cb115-3"><a href="sim-stratsamp.html#cb115-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[x<span class="sc">&gt;</span><span class="dv">0</span> <span class="sc">&amp;</span> x<span class="sc">&lt;</span><span class="dv">1</span>]</span>
+<span id="cb115-4"><a href="sim-stratsamp.html#cb115-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x);n</span>
+<span id="cb115-5"><a href="sim-stratsamp.html#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12351</span></span>
+<span id="cb115-6"><a href="sim-stratsamp.html#cb115-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="dv">1</span><span class="sc">:</span>N]</span>
+<span id="cb115-7"><a href="sim-stratsamp.html#cb115-7" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> pi<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">*</span>n<span class="sc">/</span><span class="dv">5</span><span class="sc">/</span>N</span>
+<span id="cb115-8"><a href="sim-stratsamp.html#cb115-8" aria-hidden="true" tabindex="-1"></a>I3 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I3</span>
+<span id="cb115-9"><a href="sim-stratsamp.html#cb115-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5182761</span></span>
+<span id="cb115-10"><a href="sim-stratsamp.html#cb115-10" aria-hidden="true" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N</span></code></pre></div>
+<p><span class="math inline">\(f_4(x)\)</span>的分布函数为<span class="math inline">\(F_4(x)=\frac{e^{-x}-1}{e^{-1}-1}\)</span></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sim-stratsamp.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I4</span></span>
+<span id="cb116-2"><a href="sim-stratsamp.html#cb116-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N)</span>
+<span id="cb116-3"><a href="sim-stratsamp.html#cb116-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>((<span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span>u<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb116-4"><a href="sim-stratsamp.html#cb116-4" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">-</span><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb116-5"><a href="sim-stratsamp.html#cb116-5" aria-hidden="true" tabindex="-1"></a>I4 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I4</span>
+<span id="cb116-6"><a href="sim-stratsamp.html#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5263397</span></span>
+<span id="cb116-7"><a href="sim-stratsamp.html#cb116-7" aria-hidden="true" tabindex="-1"></a>var4 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sim-stratsamp.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I5</span></span>
+<span id="cb117-2"><a href="sim-stratsamp.html#cb117-2" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N)</span>
+<span id="cb117-3"><a href="sim-stratsamp.html#cb117-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tan</span>(pi<span class="sc">*</span>u<span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb117-4"><a href="sim-stratsamp.html#cb117-4" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> pi<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb117-5"><a href="sim-stratsamp.html#cb117-5" aria-hidden="true" tabindex="-1"></a>I5 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I5</span>
+<span id="cb117-6"><a href="sim-stratsamp.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5229833</span></span>
+<span id="cb117-7"><a href="sim-stratsamp.html#cb117-7" aria-hidden="true" tabindex="-1"></a>var5 <span class="ot">&lt;-</span> <span class="fu">var</span>(eta)<span class="sc">/</span>N</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sim-stratsamp.html#cb118-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb118-2"><a href="sim-stratsamp.html#cb118-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">f1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(I1,var1),</span>
+<span id="cb118-3"><a href="sim-stratsamp.html#cb118-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">f2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(I2,var2),</span>
+<span id="cb118-4"><a href="sim-stratsamp.html#cb118-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">f3</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(I3,var3),</span>
+<span id="cb118-5"><a href="sim-stratsamp.html#cb118-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">f4</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(I4,var4),</span>
+<span id="cb118-6"><a href="sim-stratsamp.html#cb118-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">f5</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(I5,var5)</span>
+<span id="cb118-7"><a href="sim-stratsamp.html#cb118-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb118-8"><a href="sim-stratsamp.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;I估计&quot;</span>,<span class="st">&quot;I的方差估计&quot;</span>)</span>
+<span id="cb118-9"><a href="sim-stratsamp.html#cb118-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-10"><a href="sim-stratsamp.html#cb118-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df,<span class="at">row.names =</span> <span class="cn">TRUE</span>,<span class="at">digits =</span> <span class="dv">9</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">f1</th>
+<th align="right">f2</th>
+<th align="right">f3</th>
+<th align="right">f4</th>
+<th align="right">f5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I估计</td>
+<td align="right">0.525298867</td>
+<td align="right">0.52609148</td>
+<td align="right">0.518276067</td>
+<td align="right">0.526339670</td>
+<td align="right">0.522983320</td>
+</tr>
+<tr class="even">
+<td>I的方差估计</td>
+<td align="right">0.000005979</td>
+<td align="right">0.00000094</td>
+<td align="right">0.000001934</td>
+<td align="right">0.000000919</td>
+<td align="right">0.000001987</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
+<li><p><span class="math inline">\(f_1\)</span>的方差明显大于其他，是因为形状匹配度不及其他，另外2和4以及3和5的方法类似，方差也相差无几。</p></li>
+<li></li>
+</ol>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="sim-stratsamp.html#cb119-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb119-2"><a href="sim-stratsamp.html#cb119-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb119-3"><a href="sim-stratsamp.html#cb119-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fl">0.1</span><span class="sc">*</span><span class="fu">runif</span>(m<span class="sc">*</span>N),m,N)</span>
+<span id="cb119-4"><a href="sim-stratsamp.html#cb119-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out =</span> m<span class="sc">+</span><span class="dv">1</span>)[<span class="sc">-</span>(m<span class="sc">+</span><span class="dv">1</span>)]</span>
+<span id="cb119-5"><a href="sim-stratsamp.html#cb119-5" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> u<span class="sc">+</span>s</span>
+<span id="cb119-6"><a href="sim-stratsamp.html#cb119-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>u)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>u<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>m</span>
+<span id="cb119-7"><a href="sim-stratsamp.html#cb119-7" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> <span class="fu">apply</span>(x,<span class="dv">1</span>,mean)</span>
+<span id="cb119-8"><a href="sim-stratsamp.html#cb119-8" aria-hidden="true" tabindex="-1"></a>I6 <span class="ot">&lt;-</span> <span class="fu">sum</span>(eta);I6</span>
+<span id="cb119-9"><a href="sim-stratsamp.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5248444</span></span>
+<span id="cb119-10"><a href="sim-stratsamp.html#cb119-10" aria-hidden="true" tabindex="-1"></a>var6 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">apply</span>(x,<span class="dv">1</span>,var))<span class="sc">/</span>m<span class="sc">/</span>N;var6</span>
+<span id="cb119-11"><a href="sim-stratsamp.html#cb119-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6.110511e-09</span></span>
+<span id="cb119-12"><a href="sim-stratsamp.html#cb119-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-13"><a href="sim-stratsamp.html#cb119-13" aria-hidden="true" tabindex="-1"></a>var1<span class="sc">/</span>var6  <span class="co"># 跟未分层的平均值法比较</span></span>
+<span id="cb119-14"><a href="sim-stratsamp.html#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 978.4227</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>按照例13.2的方法，但是有一点问题就是，每层样本数<span class="math inline">\(N_j=1\)</span>，那每层的方差都没法计算，导致总方差也没法计算呀…</li>
+</ol>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="sim-stratsamp.html#cb120-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb120-2"><a href="sim-stratsamp.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="sim-stratsamp.html#cb120-3" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(N)</span>
+<span id="cb120-4"><a href="sim-stratsamp.html#cb120-4" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> ((<span class="dv">1</span><span class="sc">:</span>N)<span class="sc">-</span><span class="dv">1</span><span class="sc">+</span>u)<span class="sc">/</span>N</span>
+<span id="cb120-5"><a href="sim-stratsamp.html#cb120-5" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(eta,fun.h)</span>
+<span id="cb120-6"><a href="sim-stratsamp.html#cb120-6" aria-hidden="true" tabindex="-1"></a>I7 <span class="ot">&lt;-</span> <span class="fu">mean</span>(eta);I7</span>
+<span id="cb120-7"><a href="sim-stratsamp.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5247968</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+<section style="
+    display: block;
+">
+<script src="https://utteranc.es/client.js"
+        repo="huanghaicheng1024/statcomp"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sim-impsamp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="方差缩减技术-sim-varreduct.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/sim-stratsamp.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

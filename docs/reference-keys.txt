@@ -25,3 +25,7 @@ sim-impsamp
 重要采样法
 比较
 习题-7
+sim-stratsamp
+习题-8
+方差缩减技术-sim-varreduct
+习题-9
