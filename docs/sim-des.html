@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 随机服务系统模拟 | 统计计算</title>
+  <meta name="description" content="这是使用bookdwon编写的书籍。" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 随机服务系统模拟 | 统计计算" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 随机服务系统模拟 | 统计计算" />
+  
+  <meta name="twitter:description" content="这是使用bookdwon编写的书籍。" />
+  
+
+<meta name="author" content="Huang" />
+
+
+<meta name="date" content="2021-08-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sim-varreduct.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">统计计算</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>背景</a></li>
+<li class="chapter" data-level="1" data-path="intro-error.html"><a href="intro-error.html"><i class="fa fa-check"></i><b>1</b> 误差</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro-error.html"><a href="intro-error.html#习题"><i class="fa fa-check"></i><b>1.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-summary.html"><a href="intro-summary.html"><i class="fa fa-check"></i><b>2</b> 概括统计量</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-summary.html"><a href="intro-summary.html#习题-1"><i class="fa fa-check"></i><b>2.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-graph.html"><a href="intro-graph.html"><i class="fa fa-check"></i><b>3</b> 统计图形</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="intro-graph.html"><a href="intro-graph.html#习题-2"><i class="fa fa-check"></i><b>3.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rng-uniform.html"><a href="rng-uniform.html"><i class="fa fa-check"></i><b>4</b> 均匀分布随机数生成</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rng-uniform.html"><a href="rng-uniform.html#习题-3"><i class="fa fa-check"></i><b>4.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rng-nonuni.html"><a href="rng-nonuni.html"><i class="fa fa-check"></i><b>5</b> 非均匀随机数生成</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rng-nonuni.html"><a href="rng-nonuni.html#笔记"><i class="fa fa-check"></i><b>5.1</b> 笔记</a></li>
+<li class="chapter" data-level="5.2" data-path="rng-nonuni.html"><a href="rng-nonuni.html#习题-4"><i class="fa fa-check"></i><b>5.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rng-multi.html"><a href="rng-multi.html"><i class="fa fa-check"></i><b>6</b> 随机向量和随机过程的随机数</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rng-multi.html"><a href="rng-multi.html#笔记-1"><i class="fa fa-check"></i><b>6.1</b> 笔记</a></li>
+<li class="chapter" data-level="6.2" data-path="rng-multi.html"><a href="rng-multi.html#习题-5"><i class="fa fa-check"></i><b>6.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sim-ranquad.html"><a href="sim-ranquad.html"><i class="fa fa-check"></i><b>7</b> 随机模拟积分</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sim-ranquad.html"><a href="sim-ranquad.html#习题-6"><i class="fa fa-check"></i><b>7.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sim-impsamp.html"><a href="sim-impsamp.html"><i class="fa fa-check"></i><b>8</b> 重要抽样法</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sim-impsamp.html"><a href="sim-impsamp.html#笔记-2"><i class="fa fa-check"></i><b>8.1</b> 笔记</a></li>
+<li class="chapter" data-level="8.2" data-path="sim-impsamp.html"><a href="sim-impsamp.html#习题-7"><i class="fa fa-check"></i><b>8.2</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html"><i class="fa fa-check"></i><b>9</b> 分层抽样法</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sim-stratsamp.html"><a href="sim-stratsamp.html#习题-8"><i class="fa fa-check"></i><b>9.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sim-varreduct.html"><a href="sim-varreduct.html"><i class="fa fa-check"></i><b>10</b> 方差缩减技术</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sim-varreduct.html"><a href="sim-varreduct.html#习题-9"><i class="fa fa-check"></i><b>10.1</b> 习题</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="sim-des.html"><a href="sim-des.html"><i class="fa fa-check"></i><b>11</b> 随机服务系统模拟</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="sim-des.html"><a href="sim-des.html#笔记-3"><i class="fa fa-check"></i><b>11.1</b> 笔记</a></li>
+<li class="chapter" data-level="11.2" data-path="sim-des.html"><a href="sim-des.html#习题-10"><i class="fa fa-check"></i><b>11.2</b> 习题</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">本书由 bookdown 强力驱动</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sim-des" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> 随机服务系统模拟</h1>
+<div id="笔记-3" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> 笔记</h2>
+<p>这里主要学习一下R包<code>simmer</code>的一些用法，主要参考该包的<a href="https://r-simmer.org/index.html">文档</a>.</p>
+<div id="基本用法" class="section level3" number="11.1.1">
+<h3><span class="header-section-number">11.1.1</span> 基本用法</h3>
+<p>先实例化一个新的模拟环境</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="sim-des.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb124-2"><a href="sim-des.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb124-3"><a href="sim-des.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: &#39;simmer&#39;</span></span>
+<span id="cb124-4"><a href="sim-des.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:GGally&#39;:</span></span>
+<span id="cb124-5"><a href="sim-des.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb124-6"><a href="sim-des.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     wrap</span></span>
+<span id="cb124-7"><a href="sim-des.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:dplyr&#39;:</span></span>
+<span id="cb124-8"><a href="sim-des.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb124-9"><a href="sim-des.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     select</span></span>
+<span id="cb124-10"><a href="sim-des.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following object is masked from &#39;package:tidyr&#39;:</span></span>
+<span id="cb124-11"><a href="sim-des.html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb124-12"><a href="sim-des.html#cb124-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     separate</span></span>
+<span id="cb124-13"><a href="sim-des.html#cb124-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-14"><a href="sim-des.html#cb124-14" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb124-15"><a href="sim-des.html#cb124-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-16"><a href="sim-des.html#cb124-16" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">&quot;SuperDuperSim&quot;</span>)</span>
+<span id="cb124-17"><a href="sim-des.html#cb124-17" aria-hidden="true" tabindex="-1"></a>env</span>
+<span id="cb124-18"><a href="sim-des.html#cb124-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: SuperDuperSim | now: 0 | next: </span></span>
+<span id="cb124-19"><a href="sim-des.html#cb124-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span></code></pre></div>
+<p>建立一个简单的轨迹：模拟患者问诊。什么是轨迹呢，实际上就是对每名对象的服务过程。</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="sim-des.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="do">## trajectory初始化一个轨迹对象</span></span>
+<span id="cb125-2"><a href="sim-des.html#cb125-2" aria-hidden="true" tabindex="-1"></a>patient <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">&quot;patients&#39; path&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-3"><a href="sim-des.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 添加一个护士事件</span></span>
+<span id="cb125-4"><a href="sim-des.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 抓住一个护士资源</span></span>
+<span id="cb125-5"><a href="sim-des.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">&quot;nurse&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-6"><a href="sim-des.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 服务时间分布</span></span>
+<span id="cb125-7"><a href="sim-des.html#cb125-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">15</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb125-8"><a href="sim-des.html#cb125-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 释放一个护士资源</span></span>
+<span id="cb125-9"><a href="sim-des.html#cb125-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">&quot;nurse&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-10"><a href="sim-des.html#cb125-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 添加一个医生事件</span></span>
+<span id="cb125-11"><a href="sim-des.html#cb125-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">&quot;doctor&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-12"><a href="sim-des.html#cb125-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">20</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb125-13"><a href="sim-des.html#cb125-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">&quot;doctor&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-14"><a href="sim-des.html#cb125-14" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 添加一个管理员事件</span></span>
+<span id="cb125-15"><a href="sim-des.html#cb125-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">&quot;administration&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb125-16"><a href="sim-des.html#cb125-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(<span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb125-17"><a href="sim-des.html#cb125-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">&quot;administration&quot;</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p>往模拟系统添加资源：</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="sim-des.html#cb126-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span></span>
+<span id="cb126-2"><a href="sim-des.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 1个护士</span></span>
+<span id="cb126-3"><a href="sim-des.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">&quot;nurse&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb126-4"><a href="sim-des.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 2个医生 </span></span>
+<span id="cb126-5"><a href="sim-des.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">&quot;doctor&quot;</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb126-6"><a href="sim-des.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 1个管理员</span></span>
+<span id="cb126-7"><a href="sim-des.html#cb126-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">&quot;administration&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb126-8"><a href="sim-des.html#cb126-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 患者到达的时间间隔分布</span></span>
+<span id="cb126-9"><a href="sim-des.html#cb126-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_generator</span>(<span class="st">&quot;patient&quot;</span>, patient, <span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>))</span>
+<span id="cb126-10"><a href="sim-des.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: SuperDuperSim | now: 0 | next: 0</span></span>
+<span id="cb126-11"><a href="sim-des.html#cb126-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb126-12"><a href="sim-des.html#cb126-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: nurse | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb126-13"><a href="sim-des.html#cb126-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: doctor | monitored: TRUE | server status: 0(2) | queue status: 0(Inf) }</span></span>
+<span id="cb126-14"><a href="sim-des.html#cb126-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: administration | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb126-15"><a href="sim-des.html#cb126-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: patient | monitored: 1 | n_generated: 0 }</span></span></code></pre></div>
+<p>测试运行我们的模拟系统：</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="sim-des.html#cb127-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> </span>
+<span id="cb127-2"><a href="sim-des.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 运行80个时间单位</span></span>
+<span id="cb127-3"><a href="sim-des.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="dv">80</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb127-4"><a href="sim-des.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 验证当前的模拟时间点</span></span>
+<span id="cb127-5"><a href="sim-des.html#cb127-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">now</span>()</span>
+<span id="cb127-6"><a href="sim-des.html#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 80</span></span>
+<span id="cb127-7"><a href="sim-des.html#cb127-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 未来三个事件到来的时刻</span></span>
+<span id="cb127-8"><a href="sim-des.html#cb127-8" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> <span class="fu">peek</span>(<span class="dv">3</span>)</span>
+<span id="cb127-9"><a href="sim-des.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 80.69540 81.62105 81.62105</span></span></code></pre></div>
+<p>也可以指定运行多少个事件：</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="sim-des.html#cb128-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span></span>
+<span id="cb128-2"><a href="sim-des.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stepn</span>() <span class="sc">%&gt;%</span> <span class="co"># 1 step</span></span>
+<span id="cb128-3"><a href="sim-des.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb128-4"><a href="sim-des.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stepn</span>(<span class="dv">3</span>)    <span class="co"># 3 steps</span></span>
+<span id="cb128-5"><a href="sim-des.html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: SuperDuperSim | now: 80.6953988949657 | next: 80.6953988949657</span></span>
+<span id="cb128-6"><a href="sim-des.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb128-7"><a href="sim-des.html#cb128-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: nurse | monitored: TRUE | server status: 1(1) | queue status: 1(Inf) }</span></span>
+<span id="cb128-8"><a href="sim-des.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: doctor | monitored: TRUE | server status: 1(2) | queue status: 0(Inf) }</span></span>
+<span id="cb128-9"><a href="sim-des.html#cb128-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: administration | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb128-10"><a href="sim-des.html#cb128-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: patient | monitored: 1 | n_generated: 7 }</span></span>
+<span id="cb128-11"><a href="sim-des.html#cb128-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: SuperDuperSim | now: 81.6210531397386 | next: 81.6210531397386</span></span>
+<span id="cb128-12"><a href="sim-des.html#cb128-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb128-13"><a href="sim-des.html#cb128-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: nurse | monitored: TRUE | server status: 1(1) | queue status: 2(Inf) }</span></span>
+<span id="cb128-14"><a href="sim-des.html#cb128-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: doctor | monitored: TRUE | server status: 1(2) | queue status: 0(Inf) }</span></span>
+<span id="cb128-15"><a href="sim-des.html#cb128-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: administration | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb128-16"><a href="sim-des.html#cb128-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: patient | monitored: 1 | n_generated: 7 }</span></span></code></pre></div>
+<p>也可以看看系统的最终状态：</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="sim-des.html#cb129-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> <span class="fu">peek</span>(<span class="cn">Inf</span>, <span class="at">verbose=</span><span class="cn">TRUE</span>)</span>
+<span id="cb129-2"><a href="sim-des.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       time  process</span></span>
+<span id="cb129-3"><a href="sim-des.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 81.62105  patient</span></span>
+<span id="cb129-4"><a href="sim-des.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 86.74154 patient4</span></span>
+<span id="cb129-5"><a href="sim-des.html#cb129-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 89.36934 patient3</span></span></code></pre></div>
+<p>接下来说明一下如何重置系统。一个方法是执行一个比较长的时间单位（比较一下上面的最终状态时间）：</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="sim-des.html#cb130-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> </span>
+<span id="cb130-2"><a href="sim-des.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="dv">120</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="sim-des.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">now</span>()</span>
+<span id="cb130-4"><a href="sim-des.html#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 120</span></span></code></pre></div>
+<p>当然，也可以利用<code>reset()</code>函数：</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="sim-des.html#cb131-1" aria-hidden="true" tabindex="-1"></a>env <span class="sc">%&gt;%</span> </span>
+<span id="cb131-2"><a href="sim-des.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reset</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb131-3"><a href="sim-des.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="dv">80</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb131-4"><a href="sim-des.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">now</span>()</span>
+<span id="cb131-5"><a href="sim-des.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 80</span></span></code></pre></div>
+<p>可以利用R基本函数多次复制同一个系统，比如复制100次同一个系统：</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="sim-des.html#cb132-1" aria-hidden="true" tabindex="-1"></a>envs <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb132-2"><a href="sim-des.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">simmer</span>(<span class="st">&quot;SuperDuperSim&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-3"><a href="sim-des.html#cb132-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;nurse&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-4"><a href="sim-des.html#cb132-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;doctor&quot;</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-5"><a href="sim-des.html#cb132-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;administration&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-6"><a href="sim-des.html#cb132-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_generator</span>(<span class="st">&quot;patient&quot;</span>, patient, <span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb132-7"><a href="sim-des.html#cb132-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">run</span>(<span class="dv">80</span>)</span>
+<span id="cb132-8"><a href="sim-des.html#cb132-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="sim-des.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>((envs))</span>
+<span id="cb133-2"><a href="sim-des.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span></code></pre></div>
+<p>下面这个方法可能会更好。如果单个复制品运行起来花费比较大，可以直接并行地运行他们。这里利用的是<code>parallel</code>包。</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="sim-des.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb134-2"><a href="sim-des.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="sim-des.html#cb134-3" aria-hidden="true" tabindex="-1"></a>envs <span class="ot">&lt;-</span> <span class="fu">mclapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb134-4"><a href="sim-des.html#cb134-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">simmer</span>(<span class="st">&quot;SuperDuperSim&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-5"><a href="sim-des.html#cb134-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;nurse&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-6"><a href="sim-des.html#cb134-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;doctor&quot;</span>, <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-7"><a href="sim-des.html#cb134-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;administration&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-8"><a href="sim-des.html#cb134-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_generator</span>(<span class="st">&quot;patient&quot;</span>, patient, <span class="cf">function</span>() <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb134-9"><a href="sim-des.html#cb134-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">run</span>(<span class="dv">80</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb134-10"><a href="sim-des.html#cb134-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wrap</span>()</span>
+<span id="cb134-11"><a href="sim-des.html#cb134-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>如何获取各种属性：</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="sim-des.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 返回到达数量</span></span>
+<span id="cb135-2"><a href="sim-des.html#cb135-2" aria-hidden="true" tabindex="-1"></a>envs[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">get_n_generated</span>(<span class="st">&quot;patient&quot;</span>)</span>
+<span id="cb135-3"><a href="sim-des.html#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb135-4"><a href="sim-des.html#cb135-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-5"><a href="sim-des.html#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 获取排队人数</span></span>
+<span id="cb135-6"><a href="sim-des.html#cb135-6" aria-hidden="true" tabindex="-1"></a>envs[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">get_queue_count</span>(<span class="st">&quot;doctor&quot;</span>)</span>
+<span id="cb135-7"><a href="sim-des.html#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb135-8"><a href="sim-des.html#cb135-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-9"><a href="sim-des.html#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 获取排队容量</span></span>
+<span id="cb135-10"><a href="sim-des.html#cb135-10" aria-hidden="true" tabindex="-1"></a>envs[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> <span class="fu">get_queue_size</span>(<span class="st">&quot;doctor&quot;</span>)</span>
+<span id="cb135-11"><a href="sim-des.html#cb135-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
+<span id="cb135-12"><a href="sim-des.html#cb135-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-13"><a href="sim-des.html#cb135-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 获取监控的资源状态</span></span>
+<span id="cb135-14"><a href="sim-des.html#cb135-14" aria-hidden="true" tabindex="-1"></a>envs <span class="sc">%&gt;%</span> </span>
+<span id="cb135-15"><a href="sim-des.html#cb135-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_resources</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb135-16"><a href="sim-des.html#cb135-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb135-17"><a href="sim-des.html#cb135-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   resource      time server queue capacity queue_size system limit replication</span></span>
+<span id="cb135-18"><a href="sim-des.html#cb135-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    nurse  8.680399      1     0        1        Inf      1   Inf           1</span></span>
+<span id="cb135-19"><a href="sim-des.html#cb135-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    nurse 18.065588      1     1        1        Inf      2   Inf           1</span></span>
+<span id="cb135-20"><a href="sim-des.html#cb135-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    nurse 22.798471      1     0        1        Inf      1   Inf           1</span></span>
+<span id="cb135-21"><a href="sim-des.html#cb135-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   doctor 22.798471      1     0        2        Inf      1   Inf           1</span></span>
+<span id="cb135-22"><a href="sim-des.html#cb135-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    nurse 27.874898      1     1        1        Inf      2   Inf           1</span></span>
+<span id="cb135-23"><a href="sim-des.html#cb135-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    nurse 36.522502      1     0        1        Inf      1   Inf           1</span></span>
+<span id="cb135-24"><a href="sim-des.html#cb135-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-25"><a href="sim-des.html#cb135-25" aria-hidden="true" tabindex="-1"></a><span class="do">## 获取监控的到达状态</span></span>
+<span id="cb135-26"><a href="sim-des.html#cb135-26" aria-hidden="true" tabindex="-1"></a>envs <span class="sc">%&gt;%</span> </span>
+<span id="cb135-27"><a href="sim-des.html#cb135-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb135-28"><a href="sim-des.html#cb135-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb135-29"><a href="sim-des.html#cb135-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       name start_time end_time activity_time finished replication</span></span>
+<span id="cb135-30"><a href="sim-des.html#cb135-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 patient0   8.680399 47.82654      39.14614     TRUE           1</span></span>
+<span id="cb135-31"><a href="sim-des.html#cb135-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 patient1  18.065588 62.27708      39.47860     TRUE           1</span></span>
+<span id="cb135-32"><a href="sim-des.html#cb135-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 patient2  27.874898 77.13731      40.61481     TRUE           1</span></span>
+<span id="cb135-33"><a href="sim-des.html#cb135-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 patient0   7.639828 47.39533      39.75551     TRUE           2</span></span>
+<span id="cb135-34"><a href="sim-des.html#cb135-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 patient1  17.311110 65.52527      41.36600     TRUE           2</span></span>
+<span id="cb135-35"><a href="sim-des.html#cb135-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 patient2  30.961440 76.90152      40.23089     TRUE           2</span></span></code></pre></div>
+</div>
+<div id="更进一步的轨迹使用方法" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> 更进一步的轨迹使用方法</h3>
+<p>前面谈到了，对于轨迹的活动，常用的有<code>seize</code>,<code>timeout</code>,<code>release</code>，但此外还有很多更高级的方法，全部方法如下:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="sim-des.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class=</span><span class="st">&quot;trajectory&quot;</span>)</span>
+<span id="cb136-2"><a href="sim-des.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] [                       [[                      [[&lt;-                   </span></span>
+<span id="cb136-3"><a href="sim-des.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4] [&lt;-                     activate                batch                  </span></span>
+<span id="cb136-4"><a href="sim-des.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7] branch                  clone                   deactivate             </span></span>
+<span id="cb136-5"><a href="sim-des.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10] get_n_activities        handle_unfinished       join                   </span></span>
+<span id="cb136-6"><a href="sim-des.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13] leave                   length                  log_                   </span></span>
+<span id="cb136-7"><a href="sim-des.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] print                   release                 release_all            </span></span>
+<span id="cb136-8"><a href="sim-des.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [19] release_selected        release_selected_all    renege_abort           </span></span>
+<span id="cb136-9"><a href="sim-des.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [22] renege_if               renege_in               rep                    </span></span>
+<span id="cb136-10"><a href="sim-des.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [25] rollback                seize                   seize_selected         </span></span>
+<span id="cb136-11"><a href="sim-des.html#cb136-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [28] select                  send                    separate               </span></span>
+<span id="cb136-12"><a href="sim-des.html#cb136-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [31] set_attribute           set_capacity            set_capacity_selected  </span></span>
+<span id="cb136-13"><a href="sim-des.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [34] set_global              set_prioritization      set_queue_size         </span></span>
+<span id="cb136-14"><a href="sim-des.html#cb136-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [37] set_queue_size_selected set_source              set_trajectory         </span></span>
+<span id="cb136-15"><a href="sim-des.html#cb136-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [40] stop_if                 synchronize             timeout                </span></span>
+<span id="cb136-16"><a href="sim-des.html#cb136-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [43] timeout_from_attribute  trap                    untrap                 </span></span>
+<span id="cb136-17"><a href="sim-des.html#cb136-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [46] wait                   </span></span>
+<span id="cb136-18"><a href="sim-des.html#cb136-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; see &#39;?methods&#39; for accessing help and source code</span></span></code></pre></div>
+<p>许多的活动方法都可以接受动态参数，也即接受一个函数（可以很复杂，包含很多交互），特别提一下<code>timeout</code>，正如我们前面使用了函数作为参数<code>timeout(function() rnorm(1, 15))</code>，但若只使用<code>timeout(rnorm(1, 15))</code>，只会生成一个随机数然后是静态参数。</p>
+<p>轨迹可以跟模拟环境进行很多焦糊，常见的就是获取模拟环境的很多属性。一个需要注意的地方是，我们最好有这样的习惯：<strong>首先实例化模拟环境</strong>，而不是创建轨迹或者其他什么的，避免难以察觉的错误。</p>
+<p>接下来是一下对轨迹联合以及取子集的操作。</p>
+<p><code>join()</code>函数可以联合拼接轨迹，可以利用<code>[</code>、<code>[[</code>、<code>head()</code>、<code>tail()</code>等运算符或者函数取轨迹的子集。</p>
+</div>
+</div>
+<div id="习题-10" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> 习题</h2>
+<div id="习题1-10" class="section level3 unnumbered">
+<h3>习题1</h3>
+<ol style="list-style-type: decimal">
+<li>将时间单位看作小时。</li>
+</ol>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="sim-des.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb137-2"><a href="sim-des.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1024</span>)</span>
+<span id="cb137-3"><a href="sim-des.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="sim-des.html#cb137-4" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
+<span id="cb137-5"><a href="sim-des.html#cb137-5" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb137-6"><a href="sim-des.html#cb137-6" aria-hidden="true" tabindex="-1"></a>fun_rexp_mu <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, mu)</span>
+<span id="cb137-7"><a href="sim-des.html#cb137-7" aria-hidden="true" tabindex="-1"></a>fun_rexp_lambda <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, lambda)</span>
+<span id="cb137-8"><a href="sim-des.html#cb137-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-9"><a href="sim-des.html#cb137-9" aria-hidden="true" tabindex="-1"></a>bank <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">&quot;bank&quot;</span>)</span>
+<span id="cb137-10"><a href="sim-des.html#cb137-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-11"><a href="sim-des.html#cb137-11" aria-hidden="true" tabindex="-1"></a>customer <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">&quot;customer&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-12"><a href="sim-des.html#cb137-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-13"><a href="sim-des.html#cb137-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(fun_rexp_mu) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-14"><a href="sim-des.html#cb137-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">&quot;counter&quot;</span>)</span>
+<span id="cb137-15"><a href="sim-des.html#cb137-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-16"><a href="sim-des.html#cb137-16" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb137-17"><a href="sim-des.html#cb137-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-18"><a href="sim-des.html#cb137-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 从8点到17点，24小时后循环</span></span>
+<span id="cb137-19"><a href="sim-des.html#cb137-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_generator</span>(<span class="st">&quot;customer&quot;</span>,customer,<span class="fu">from_to</span>(<span class="dv">8</span>,<span class="dv">17</span>,fun_rexp_lambda,<span class="at">every =</span> <span class="dv">24</span>))</span>
+<span id="cb137-20"><a href="sim-des.html#cb137-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: bank | now: 0 | next: 0</span></span>
+<span id="cb137-21"><a href="sim-des.html#cb137-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb137-22"><a href="sim-des.html#cb137-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: counter | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb137-23"><a href="sim-des.html#cb137-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: customer | monitored: 1 | n_generated: 0 }</span></span>
+<span id="cb137-24"><a href="sim-des.html#cb137-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-25"><a href="sim-des.html#cb137-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 2天内的服务情况</span></span>
+<span id="cb137-26"><a href="sim-des.html#cb137-26" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb137-27"><a href="sim-des.html#cb137-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="dv">48</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-28"><a href="sim-des.html#cb137-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>()</span>
+<span id="cb137-29"><a href="sim-des.html#cb137-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          name start_time  end_time activity_time finished replication</span></span>
+<span id="cb137-30"><a href="sim-des.html#cb137-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   customer0    8.00000  9.217335     1.2173351     TRUE           1</span></span>
+<span id="cb137-31"><a href="sim-des.html#cb137-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   customer1   10.03479 10.534241     0.4994537     TRUE           1</span></span>
+<span id="cb137-32"><a href="sim-des.html#cb137-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3   customer2   14.79583 15.765146     0.9693123     TRUE           1</span></span>
+<span id="cb137-33"><a href="sim-des.html#cb137-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4   customer3   16.90828 17.084277     0.1759946     TRUE           1</span></span>
+<span id="cb137-34"><a href="sim-des.html#cb137-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5   customer4   32.00000 32.243604     0.2436042     TRUE           1</span></span>
+<span id="cb137-35"><a href="sim-des.html#cb137-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6   customer5   36.49778 36.861577     0.3637970     TRUE           1</span></span>
+<span id="cb137-36"><a href="sim-des.html#cb137-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7   customer6   36.65448 37.902313     1.0407360     TRUE           1</span></span>
+<span id="cb137-37"><a href="sim-des.html#cb137-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8   customer7   37.54700 38.997167     1.0948535     TRUE           1</span></span>
+<span id="cb137-38"><a href="sim-des.html#cb137-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9   customer8   38.64765 41.565584     2.5684179     TRUE           1</span></span>
+<span id="cb137-39"><a href="sim-des.html#cb137-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  customer9   39.01735 42.006504     0.4409200     TRUE           1</span></span>
+<span id="cb137-40"><a href="sim-des.html#cb137-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 customer10   39.76817 43.491433     1.4849281     TRUE           1</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>不妨假设：
+<span class="math display">\[
+\lambda(t)=
+\begin{cases}
+2 &amp; 0\le t&lt;10\\
+1.9 &amp; 10\le t&lt;20\\
+\cdots \\
+1.1 &amp; t\ge 90\\
+\end{cases}
+\]</span></li>
+</ol>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="sim-des.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(simmer)</span>
+<span id="cb138-2"><a href="sim-des.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1024</span>)</span>
+<span id="cb138-3"><a href="sim-des.html#cb138-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="sim-des.html#cb138-4" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fl">1.0</span></span>
+<span id="cb138-5"><a href="sim-des.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-6"><a href="sim-des.html#cb138-6" aria-hidden="true" tabindex="-1"></a>bank <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">&quot;bank&quot;</span>)</span>
+<span id="cb138-7"><a href="sim-des.html#cb138-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-8"><a href="sim-des.html#cb138-8" aria-hidden="true" tabindex="-1"></a>fun_rexp_mu <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, mu)</span>
+<span id="cb138-9"><a href="sim-des.html#cb138-9" aria-hidden="true" tabindex="-1"></a>fun_rexp_lambda <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb138-10"><a href="sim-des.html#cb138-10" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> <span class="fu">now</span>(bank)</span>
+<span id="cb138-11"><a href="sim-des.html#cb138-11" aria-hidden="true" tabindex="-1"></a>  lambda <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(t<span class="sc">&lt;</span><span class="dv">90</span>,<span class="dv">2</span><span class="sc">-</span><span class="fu">floor</span>(t<span class="sc">/</span><span class="dv">10</span>)<span class="sc">*</span><span class="fl">0.1</span>,<span class="fl">1.1</span>)</span>
+<span id="cb138-12"><a href="sim-des.html#cb138-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rexp</span>(<span class="dv">1</span>,lambda)</span>
+<span id="cb138-13"><a href="sim-des.html#cb138-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb138-14"><a href="sim-des.html#cb138-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-15"><a href="sim-des.html#cb138-15" aria-hidden="true" tabindex="-1"></a>customer <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">&quot;customer&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-16"><a href="sim-des.html#cb138-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seize</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-17"><a href="sim-des.html#cb138-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">timeout</span>(fun_rexp_mu) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-18"><a href="sim-des.html#cb138-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">release</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>)</span>
+<span id="cb138-19"><a href="sim-des.html#cb138-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-20"><a href="sim-des.html#cb138-20" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb138-21"><a href="sim-des.html#cb138-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_resource</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb138-22"><a href="sim-des.html#cb138-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_generator</span>(<span class="st">&quot;customer&quot;</span>,customer,fun_rexp_lambda)</span>
+<span id="cb138-23"><a href="sim-des.html#cb138-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: bank | now: 0 | next: 0</span></span>
+<span id="cb138-24"><a href="sim-des.html#cb138-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb138-25"><a href="sim-des.html#cb138-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: counter | monitored: TRUE | server status: 0(1) | queue status: 0(Inf) }</span></span>
+<span id="cb138-26"><a href="sim-des.html#cb138-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: customer | monitored: 1 | n_generated: 0 }</span></span>
+<span id="cb138-27"><a href="sim-des.html#cb138-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-28"><a href="sim-des.html#cb138-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 测试</span></span>
+<span id="cb138-29"><a href="sim-des.html#cb138-29" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb138-30"><a href="sim-des.html#cb138-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run</span>(<span class="dv">10</span>) </span>
+<span id="cb138-31"><a href="sim-des.html#cb138-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; simmer environment: bank | now: 10 | next: 10.3397909260835</span></span>
+<span id="cb138-32"><a href="sim-des.html#cb138-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Monitor: in memory }</span></span>
+<span id="cb138-33"><a href="sim-des.html#cb138-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Resource: counter | monitored: TRUE | server status: 1(1) | queue status: 9(Inf) }</span></span>
+<span id="cb138-34"><a href="sim-des.html#cb138-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; { Source: customer | monitored: 1 | n_generated: 19 }</span></span>
+<span id="cb138-35"><a href="sim-des.html#cb138-35" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb138-36"><a href="sim-des.html#cb138-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_queue_count</span>(<span class="st">&quot;counter&quot;</span>)</span>
+<span id="cb138-37"><a href="sim-des.html#cb138-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb138-38"><a href="sim-des.html#cb138-38" aria-hidden="true" tabindex="-1"></a>bank <span class="sc">%&gt;%</span> </span>
+<span id="cb138-39"><a href="sim-des.html#cb138-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_mon_arrivals</span>()</span>
+<span id="cb138-40"><a href="sim-des.html#cb138-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        name start_time end_time activity_time finished replication</span></span>
+<span id="cb138-41"><a href="sim-des.html#cb138-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 customer0  0.8139149 4.622752     3.8088375     TRUE           1</span></span>
+<span id="cb138-42"><a href="sim-des.html#cb138-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 customer1  1.4225824 4.866357     0.2436042     TRUE           1</span></span>
+<span id="cb138-43"><a href="sim-des.html#cb138-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 customer2  1.6723093 4.991716     0.1253592     TRUE           1</span></span>
+<span id="cb138-44"><a href="sim-des.html#cb138-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 customer3  2.5172887 5.705730     0.7140139     TRUE           1</span></span>
+<span id="cb138-45"><a href="sim-des.html#cb138-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 customer4  3.0019448 6.800583     1.0948535     TRUE           1</span></span>
+<span id="cb138-46"><a href="sim-des.html#cb138-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 customer5  3.0998351 7.401239     0.6006554     TRUE           1</span></span>
+<span id="cb138-47"><a href="sim-des.html#cb138-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 customer6  3.1878324 8.659349     1.2581106     TRUE           1</span></span>
+<span id="cb138-48"><a href="sim-des.html#cb138-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 customer7  4.9869445 9.805886     1.1465369     TRUE           1</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>我们用上<code>leave</code>、<code>renege_in</code>等函数：</li>
+</ol>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sim-des.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 输入：</span></span>
+<span id="cb139-2"><a href="sim-des.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="co"># L,P.1: 队伍长度大于L，顾客有一定概率P.1离开</span></span>
+<span id="cb139-3"><a href="sim-des.html#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="co"># T,P.2: 等待时间超过T，顾客有一定概率P.2离开</span></span>
+<span id="cb139-4"><a href="sim-des.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="co"># T1: 系统运行时间</span></span>
+<span id="cb139-5"><a href="sim-des.html#cb139-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mu,lambda: 服务系统参数</span></span>
+<span id="cb139-6"><a href="sim-des.html#cb139-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出：离开的顾客人数</span></span>
+<span id="cb139-7"><a href="sim-des.html#cb139-7" aria-hidden="true" tabindex="-1"></a>simmer.<span class="fl">1.3</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">L=</span><span class="dv">3</span>,<span class="at">P.1=</span><span class="fl">0.8</span>,<span class="at">T=</span><span class="dv">11</span>,<span class="at">P.2=</span><span class="fl">0.8</span>,<span class="at">T1=</span><span class="dv">200</span>,<span class="at">mu=</span><span class="fl">1.0</span>,<span class="at">lambda=</span><span class="fl">0.9</span>)</span>
+<span id="cb139-8"><a href="sim-des.html#cb139-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb139-9"><a href="sim-des.html#cb139-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(simmer)</span>
+<span id="cb139-10"><a href="sim-des.html#cb139-10" aria-hidden="true" tabindex="-1"></a>  fun_rexp_mu <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, mu)</span>
+<span id="cb139-11"><a href="sim-des.html#cb139-11" aria-hidden="true" tabindex="-1"></a>  fun_rexp_lambda <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">rexp</span>(<span class="dv">1</span>, lambda)</span>
+<span id="cb139-12"><a href="sim-des.html#cb139-12" aria-hidden="true" tabindex="-1"></a>  bank <span class="ot">&lt;-</span> <span class="fu">simmer</span>(<span class="st">&quot;bank&quot;</span>,<span class="at">log_level =</span> <span class="dv">0</span>)</span>
+<span id="cb139-13"><a href="sim-des.html#cb139-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb139-14"><a href="sim-des.html#cb139-14" aria-hidden="true" tabindex="-1"></a>  tra1 <span class="ot">&lt;-</span> <span class="fu">trajectory</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb139-15"><a href="sim-des.html#cb139-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">seize</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-16"><a href="sim-des.html#cb139-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">renege_abort</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb139-17"><a href="sim-des.html#cb139-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">log_</span>(<span class="st">&quot;I&#39;m being attended&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-18"><a href="sim-des.html#cb139-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">timeout</span>(fun_rexp_mu) <span class="sc">%&gt;%</span></span>
+<span id="cb139-19"><a href="sim-des.html#cb139-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">release</span>(<span class="st">&quot;counter&quot;</span>,<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-20"><a href="sim-des.html#cb139-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">log_</span>(<span class="st">&quot;finished&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>)</span>
+<span id="cb139-21"><a href="sim-des.html#cb139-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb139-22"><a href="sim-des.html#cb139-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb139-23"><a href="sim-des.html#cb139-23" aria-hidden="true" tabindex="-1"></a>  customer <span class="ot">&lt;-</span> <span class="fu">trajectory</span>(<span class="st">&quot;customer&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-24"><a href="sim-des.html#cb139-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log_</span>(<span class="st">&quot;here I am&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb139-25"><a href="sim-des.html#cb139-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log_</span>(<span class="cf">function</span>(){</span>
+<span id="cb139-26"><a href="sim-des.html#cb139-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">&quot;the length of queue is&quot;</span>,<span class="fu">get_queue_count</span>(bank,<span class="st">&quot;counter&quot;</span>))</span>
+<span id="cb139-27"><a href="sim-des.html#cb139-27" aria-hidden="true" tabindex="-1"></a>    },<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-28"><a href="sim-des.html#cb139-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb139-29"><a href="sim-des.html#cb139-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 一定概率离开</span></span>
+<span id="cb139-30"><a href="sim-des.html#cb139-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log_</span>(<span class="st">&quot;I am leaving...&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-31"><a href="sim-des.html#cb139-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leave</span>(<span class="cf">function</span>(){</span>
+<span id="cb139-32"><a href="sim-des.html#cb139-32" aria-hidden="true" tabindex="-1"></a>      l <span class="ot">&lt;-</span> <span class="fu">get_queue_count</span>(bank, <span class="st">&quot;counter&quot;</span>)  <span class="co"># 队伍长度</span></span>
+<span id="cb139-33"><a href="sim-des.html#cb139-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(l<span class="sc">&gt;</span>L,P<span class="fl">.1</span>,<span class="dv">0</span>)  <span class="co"># 若队伍长度大于L以P.1概率离开</span></span>
+<span id="cb139-34"><a href="sim-des.html#cb139-34" aria-hidden="true" tabindex="-1"></a>    }) <span class="sc">%&gt;%</span></span>
+<span id="cb139-35"><a href="sim-des.html#cb139-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log_</span>(<span class="st">&quot;It is a joke...&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-36"><a href="sim-des.html#cb139-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb139-37"><a href="sim-des.html#cb139-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 等待时间一定概率P.2离开</span></span>
+<span id="cb139-38"><a href="sim-des.html#cb139-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">renege_in</span>(</span>
+<span id="cb139-39"><a href="sim-des.html#cb139-39" aria-hidden="true" tabindex="-1"></a>      T,  </span>
+<span id="cb139-40"><a href="sim-des.html#cb139-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">out =</span> <span class="fu">trajectory</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb139-41"><a href="sim-des.html#cb139-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">log_</span>(<span class="st">&quot;lost my patience. Reneging...&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-42"><a href="sim-des.html#cb139-42" aria-hidden="true" tabindex="-1"></a>        <span class="fu">leave</span>(P<span class="fl">.2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-43"><a href="sim-des.html#cb139-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">log_</span>(<span class="st">&quot;It is a joke...&quot;</span>,<span class="at">level =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-44"><a href="sim-des.html#cb139-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">join</span>(tra1)</span>
+<span id="cb139-45"><a href="sim-des.html#cb139-45" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb139-46"><a href="sim-des.html#cb139-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">join</span>(tra1)</span>
+<span id="cb139-47"><a href="sim-des.html#cb139-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb139-48"><a href="sim-des.html#cb139-48" aria-hidden="true" tabindex="-1"></a>  bank <span class="sc">%&gt;%</span></span>
+<span id="cb139-49"><a href="sim-des.html#cb139-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_resource</span>(<span class="st">&quot;counter&quot;</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-50"><a href="sim-des.html#cb139-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_generator</span>(<span class="st">&quot;customer&quot;</span>, customer, fun_rexp_lambda) <span class="sc">%&gt;%</span></span>
+<span id="cb139-51"><a href="sim-des.html#cb139-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">run</span>(T1) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-52"><a href="sim-des.html#cb139-52" aria-hidden="true" tabindex="-1"></a>    invisible <span class="sc">%&gt;%</span> </span>
+<span id="cb139-53"><a href="sim-des.html#cb139-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_mon_arrivals</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb139-54"><a href="sim-des.html#cb139-54" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">leave_count =</span> <span class="fu">sum</span>(<span class="sc">!</span>finished))</span>
+<span id="cb139-55"><a href="sim-des.html#cb139-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb139-56"><a href="sim-des.html#cb139-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-57"><a href="sim-des.html#cb139-57" aria-hidden="true" tabindex="-1"></a><span class="fu">simmer.1.3</span>()</span>
+<span id="cb139-58"><a href="sim-des.html#cb139-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   leave_count</span></span>
+<span id="cb139-59"><a href="sim-des.html#cb139-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          14</span></span></code></pre></div>
+<p>以默认的参数，重复运行多次求均值：</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="sim-des.html#cb140-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb140-2"><a href="sim-des.html#cb140-2" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>,N)</span>
+<span id="cb140-3"><a href="sim-des.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb140-4"><a href="sim-des.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">simmer.1.3</span>()</span>
+<span id="cb140-5"><a href="sim-des.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  out[[i]] <span class="ot">&lt;-</span> s<span class="sc">$</span>leave_count</span>
+<span id="cb140-6"><a href="sim-des.html#cb140-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb140-7"><a href="sim-des.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(out)</span>
+<span id="cb140-8"><a href="sim-des.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20.977</span></span></code></pre></div>
+</div>
+<div id="习题2-9" class="section level3 unnumbered">
+<h3>习题2</h3>
+<p>没想明白，继续想想……</p>
+
+</div>
+</div>
+</div>
+<section style="
+    display: block;
+">
+<script src="https://utteranc.es/client.js"
+        repo="huanghaicheng1024/statcomp"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sim-varreduct.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/huanghaicheng1024/statcomp/edit/main/sim-des.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "none"
+},
+"search": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

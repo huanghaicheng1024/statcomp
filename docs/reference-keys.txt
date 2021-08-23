@@ -27,5 +27,10 @@ sim-impsamp
 习题-7
 sim-stratsamp
 习题-8
-方差缩减技术-sim-varreduct
+sim-varreduct
 习题-9
+sim-des
+笔记-3
+基本用法
+更进一步的轨迹使用方法
+习题-10
