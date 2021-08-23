@@ -26,5 +26,6 @@ rmd_files: [
   "sim-ranquad.Rmd",
   "sim-impsamp.Rmd",
   "sim-stratsamp.Rmd",
-  "sim-varreduct.Rmd"
+  "sim-varreduct.Rmd",
+  "sim-des.Rmd"
 ]

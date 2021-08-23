@@ -1,0 +1,318 @@
+# 随机服务系统模拟{#sim-des}
+
+## 笔记
+
+这里主要学习一下R包`simmer`的一些用法，主要参考该包的[文档](https://r-simmer.org/index.html).
+
+### 基本用法
+
+先实例化一个新的模拟环境
+```{r}
+library(simmer)
+
+set.seed(42)
+
+env <- simmer("SuperDuperSim")
+env
+
+```
+
+建立一个简单的轨迹：模拟患者问诊。什么是轨迹呢，实际上就是对每名对象的服务过程。
+```{r}
+## trajectory初始化一个轨迹对象
+patient <- trajectory("patients' path") %>%
+  ## 添加一个护士事件
+  ## 抓住一个护士资源
+  seize("nurse", 1) %>%
+  ## 服务时间分布
+  timeout(function() rnorm(1, 15)) %>%
+  ## 释放一个护士资源
+  release("nurse", 1) %>%
+  ## 添加一个医生事件
+  seize("doctor", 1) %>%
+  timeout(function() rnorm(1, 20)) %>%
+  release("doctor", 1) %>%
+  ## 添加一个管理员事件
+  seize("administration", 1) %>%
+  timeout(function() rnorm(1, 5)) %>%
+  release("administration", 1)
+```
+
+往模拟系统添加资源：
+```{r}
+env %>%
+  ## 1个护士
+  add_resource("nurse", 1) %>%
+  ## 2个医生 
+  add_resource("doctor", 2) %>%
+  ## 1个管理员
+  add_resource("administration", 1) %>%
+  ## 患者到达的时间间隔分布
+  add_generator("patient", patient, function() rnorm(1, 10, 2))
+```
+
+测试运行我们的模拟系统：
+```{r}
+env %>% 
+  ## 运行80个时间单位
+  run(80) %>% 
+  ## 验证当前的模拟时间点
+  now()
+## 未来三个事件到来的时刻
+env %>% peek(3)
+```
+
+也可以指定运行多少个事件：
+```{r}
+env %>%
+  stepn() %>% # 1 step
+  print() %>%
+  stepn(3)    # 3 steps
+```
+
+也可以看看系统的最终状态：
+```{r}
+env %>% peek(Inf, verbose=TRUE)
+```
+
+接下来说明一下如何重置系统。一个方法是执行一个比较长的时间单位（比较一下上面的最终状态时间）：
+```{r}
+env %>% 
+  run(120) %>%
+  now()
+```
+
+当然，也可以利用`reset()`函数：
+```{r}
+env %>% 
+  reset() %>% 
+  run(80) %>%
+  now()
+```
+
+
+可以利用R基本函数多次复制同一个系统，比如复制100次同一个系统：
+```{r}
+envs <- lapply(1:100, function(i) {
+  simmer("SuperDuperSim") %>%
+    add_resource("nurse", 1) %>%
+    add_resource("doctor", 2) %>%
+    add_resource("administration", 1) %>%
+    add_generator("patient", patient, function() rnorm(1, 10, 2)) %>%
+    run(80)
+})
+```
+```{r}
+length((envs))
+```
+
+下面这个方法可能会更好。如果单个复制品运行起来花费比较大，可以直接并行地运行他们。这里利用的是`parallel`包。
+```{r}
+library(parallel)
+
+envs <- mclapply(1:100, function(i) {
+  simmer("SuperDuperSim") %>%
+    add_resource("nurse", 1) %>%
+    add_resource("doctor", 2) %>%
+    add_resource("administration", 1) %>%
+    add_generator("patient", patient, function() rnorm(1, 10, 2)) %>%
+    run(80) %>%
+    wrap()
+})
+```
+
+如何获取各种属性：
+```{r}
+## 返回到达数量
+envs[[1]] %>% get_n_generated("patient")
+
+## 获取排队人数
+envs[[1]] %>% get_queue_count("doctor")
+
+## 获取排队容量
+envs[[1]] %>% get_queue_size("doctor")
+
+## 获取监控的资源状态
+envs %>% 
+  get_mon_resources() %>%
+  head()
+
+## 获取监控的到达状态
+envs %>% 
+  get_mon_arrivals() %>%
+  head()
+```
+
+### 更进一步的轨迹使用方法
+
+前面谈到了，对于轨迹的活动，常用的有`seize`,`timeout`,`release`，但此外还有很多更高级的方法，全部方法如下:
+```{r}
+methods(class="trajectory")
+```
+
+许多的活动方法都可以接受动态参数，也即接受一个函数（可以很复杂，包含很多交互），特别提一下`timeout`，正如我们前面使用了函数作为参数`timeout(function() rnorm(1, 15))`，但若只使用`timeout(rnorm(1, 15))`，只会生成一个随机数然后是静态参数。
+
+轨迹可以跟模拟环境进行很多焦糊，常见的就是获取模拟环境的很多属性。一个需要注意的地方是，我们最好有这样的习惯：**首先实例化模拟环境**，而不是创建轨迹或者其他什么的，避免难以察觉的错误。
+
+接下来是一下对轨迹联合以及取子集的操作。
+
+`join()`函数可以联合拼接轨迹，可以利用`[`、`[[`、`head()`、`tail()`等运算符或者函数取轨迹的子集。
+
+## 习题
+
+### 习题1{-}
+
+1. 将时间单位看作小时。
+
+```{r}
+library(simmer)
+set.seed(1024)
+
+mu <- 1.0
+lambda <- 0.8
+fun_rexp_mu <- function() rexp(1, mu)
+fun_rexp_lambda <- function() rexp(1, lambda)
+
+bank <- simmer("bank")
+
+customer <- trajectory("customer") %>% 
+  seize("counter",1) %>% 
+  timeout(fun_rexp_mu) %>% 
+  release("counter")
+
+bank %>% 
+  add_resource("counter",1) %>% 
+  # 从8点到17点，24小时后循环
+  add_generator("customer",customer,from_to(8,17,fun_rexp_lambda,every = 24))
+
+# 2天内的服务情况
+bank %>% 
+  run(48) %>% 
+  get_mon_arrivals()
+```
+
+2. 不妨假设：
+$$
+\lambda(t)=
+\begin{cases}
+2 & 0\le t<10\\
+1.9 & 10\le t<20\\
+\cdots \\
+1.1 & t\ge 90\\
+\end{cases}
+$$
+
+```{r}
+library(simmer)
+set.seed(1024)
+
+mu <- 1.0
+
+bank <- simmer("bank")
+
+fun_rexp_mu <- function() rexp(1, mu)
+fun_rexp_lambda <- function(){
+  t <- now(bank)
+  lambda <- ifelse(t<90,2-floor(t/10)*0.1,1.1)
+  rexp(1,lambda)
+}
+
+customer <- trajectory("customer") %>% 
+  seize("counter",1) %>% 
+  timeout(fun_rexp_mu) %>% 
+  release("counter",1)
+
+bank %>% 
+  add_resource("counter",1) %>% 
+  add_generator("customer",customer,fun_rexp_lambda)
+
+# 测试
+bank %>% 
+  run(10) 
+bank %>% 
+  get_queue_count("counter")
+bank %>% 
+  get_mon_arrivals()
+```
+
+
+3. 我们用上`leave`、`renege_in`等函数：
+
+```{r}
+# 输入：
+# L,P.1: 队伍长度大于L，顾客有一定概率P.1离开
+# T,P.2: 等待时间超过T，顾客有一定概率P.2离开
+# T1: 系统运行时间
+# mu,lambda: 服务系统参数
+# 输出：离开的顾客人数
+simmer.1.3 <- function(L=3,P.1=0.8,T=11,P.2=0.8,T1=200,mu=1.0,lambda=0.9)
+{
+  library(simmer)
+  fun_rexp_mu <- function() rexp(1, mu)
+  fun_rexp_lambda <- function() rexp(1, lambda)
+  bank <- simmer("bank",log_level = 0)
+  
+  tra1 <- trajectory() %>% 
+      seize("counter",1) %>%
+      renege_abort() %>%
+      log_("I'm being attended",level = 1) %>%
+      timeout(fun_rexp_mu) %>%
+      release("counter",1) %>%
+      log_("finished",level = 1)
+  
+  
+  customer <- trajectory("customer") %>%
+    log_("here I am",level = 1) %>%
+    log_(function(){
+      paste("the length of queue is",get_queue_count(bank,"counter"))
+    },level = 1) %>% 
+    
+    # 一定概率离开
+    log_("I am leaving...",level = 1) %>% 
+    leave(function(){
+      l <- get_queue_count(bank, "counter")  # 队伍长度
+      ifelse(l>L,P.1,0)  # 若队伍长度大于L以P.1概率离开
+    }) %>%
+    log_("It is a joke...",level = 1) %>% 
+    
+    # 等待时间一定概率P.2离开
+    renege_in(
+      T,  
+      out = trajectory() %>%
+        log_("lost my patience. Reneging...",level = 1) %>% 
+        leave(P.2) %>% 
+        log_("It is a joke...",level = 1) %>% 
+        join(tra1)
+    ) %>%
+    join(tra1)
+  
+  bank %>%
+    add_resource("counter", 1) %>% 
+    add_generator("customer", customer, fun_rexp_lambda) %>%
+    run(T1) %>% 
+    invisible %>% 
+    get_mon_arrivals() %>% 
+    dplyr::summarise(leave_count = sum(!finished))
+}
+
+simmer.1.3()
+```
+
+
+以默认的参数，重复运行多次求均值：
+```{r}
+N <- 1000
+out <- vector("integer",N)
+for (i in 1:N) {
+  s <- simmer.1.3()
+  out[[i]] <- s$leave_count
+}
+mean(out)
+```
+
+
+### 习题2{-}
+
+没想明白，继续想想......
+
+
