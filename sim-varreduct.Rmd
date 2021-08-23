@@ -1,4 +1,4 @@
-# 方差缩减技术{# sim-varreduct}
+# 方差缩减技术 {#sim-varreduct}
 
 ## 习题
 
